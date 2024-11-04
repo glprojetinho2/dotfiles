@@ -1,0 +1,118 @@
+-- Read the docs: https://www.lunarvim.org/docs/configuration
+-- Example configs: https://github.com/LunarVim/starter.lvim
+-- Video Tutorials: https://www.youtube.com/watch?v=sFA9kX-Ud_c&list=PLhoH5vyxr6QqGu0i7tt_XoVK9v-KvZ3m6
+-- Forum: https://www.reddit.com/r/lunarvim/
+-- Discord: https://discord.com/invite/Xb9B4Ny
+
+lvim.plugins = {
+  {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {}
+  },
+  {
+    'Exafunction/codeium.vim',
+    event = 'BufEnter',
+  },
+  { "mcchrish/zenbones.nvim", dependencies = "rktjmp/lush.nvim" },
+  {
+    "nvim-neotest/neotest",
+    dependencies = {
+      "nvim-neotest/nvim-nio",
+      "nvim-lua/plenary.nvim",
+      "antoinemadec/FixCursorHold.nvim",
+      "nvim-treesitter/nvim-treesitter"
+    },
+    config = function()
+      require("neotest").setup({
+        adapters = {
+          require "neotest-deno"
+        }
+      })
+    end
+  },
+  { "markemmons/neotest-deno" },
+  {
+    "nvim-pack/nvim-spectre",
+    dependencies = {
+      "BurntSushi/ripgrep",
+      "kyazdani42/nvim-web-devicons",
+      "folke/trouble.nvim"
+    }
+  },
+  {
+    'mrcjkb/rustaceanvim',
+    version = '^5',
+    lazy = false
+  },
+  {
+    'klen/nvim-config-local',
+    config = function()
+      require('config-local').setup {
+        -- Default options (optional)
+
+        -- Config file patterns to load (lua supported)
+        config_files = { ".nvim.lua", ".nvimrc", ".exrc" },
+
+        -- Where the plugin keeps files data
+        hashfile = vim.fn.stdpath("data") .. "/config-local",
+
+        autocommands_create = true, -- Create autocommands (VimEnter, DirectoryChanged)
+        commands_create = true,     -- Create commands (ConfigLocalSource, ConfigLocalEdit, ConfigLocalTrust, ConfigLocalIgnore)
+        silent = false,             -- Disable plugin messages (Config loaded/ignored)
+        lookup_parents = false,     -- Lookup config files in parent directories
+      }
+    end
+  },
+  {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    ft = { "markdown" },
+    build = function() vim.fn["mkdp#util#install"]() end,
+  }
+}
+
+
+
+vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers,
+  { "tailwindcss", "tsserver", "rust_analyzer" })
+lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
+  return server ~= "denols" and server ~= "sqlls"
+end, lvim.lsp.automatic_configuration.skipped_servers)
+
+local formatters = require "lvim.lsp.null-ls.formatters"
+formatters.setup {
+  { name = "rustfmt" },
+  { name = "black" },
+  { name = "prettier" },
+  { name = "xmlformat" },
+}
+local linters = require "lvim.lsp.null-ls.linters"
+linters.setup {
+  { name = "flake8" },
+}
+
+
+
+lvim.colorscheme = "randombones"
+
+-- Bindings
+lvim.keys.normal_mode["<TAB>"] = ":bn<CR>"
+lvim.keys.normal_mode["<S-TAB>"] = ":bp<CR>"
+lvim.keys.normal_mode["<leader>t"] = ":Neotest run<CR>"
+lvim.keys.normal_mode["<leader>y"] = ":%y<CR>"
+lvim.keys.normal_mode["<leader>zh"] = ":set cmdheight=1<CR>"
+lvim.keys.normal_mode["<leader>h"] = ":nohlsearch<CR>"
+lvim.keys.normal_mode["<leader>r"] = ":e<CR>"
+lvim.keys.normal_mode["<leader>a"] =
+":call system(\"deno test --allow-all /home/ferramentas/Downloads/sankhyasul/scriptsts/tests/experimentos/experimentos.test.ts --filter t123\")<CR>"
+lvim.keys.normal_mode["<leader>sT"] = ":TodoTelescope<CR>"
+lvim.keys.normal_mode["\""] =
+":s/ignore: \\(true\\|false\\)/\\=submatch(1) == 'true' ? 'ignore: false' : 'ignore: true'/g<CR>"
+
+
+-- Options
+lvim.format_on_save = true
+vim.opt.number = true
+vim.opt.wrap = true
+
