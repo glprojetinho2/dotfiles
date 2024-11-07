@@ -44,7 +44,14 @@ lvim.plugins = {
     'mrcjkb/rustaceanvim',
     version = '^5',
     lazy = false
+  }, {
+  "jay-babu/mason-null-ls.nvim",
+  event = { "BufReadPre", "BufNewFile" },
+  dependencies = {
+    "williamboman/mason.nvim",
+    "nvimtools/none-ls.nvim",
   },
+},
   {
     'klen/nvim-config-local',
     config = function()
@@ -72,28 +79,6 @@ lvim.plugins = {
   }
 }
 
-
-
-vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers,
-  { "tailwindcss", "tsserver", "rust_analyzer" })
-lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
-  return server ~= "denols" and server ~= "sqlls"
-end, lvim.lsp.automatic_configuration.skipped_servers)
-
-local formatters = require "lvim.lsp.null-ls.formatters"
-formatters.setup {
-  { name = "rustfmt" },
-  { name = "black" },
-  { name = "prettier" },
-  { name = "xmlformat" },
-}
-local linters = require "lvim.lsp.null-ls.linters"
-linters.setup {
-  { name = "flake8" },
-}
-
-
-
 lvim.colorscheme = "randombones"
 
 -- Bindings
@@ -110,9 +95,48 @@ lvim.keys.normal_mode["<leader>sT"] = ":TodoTelescope<CR>"
 lvim.keys.normal_mode["\""] =
 ":s/ignore: \\(true\\|false\\)/\\=submatch(1) == 'true' ? 'ignore: false' : 'ignore: true'/g<CR>"
 
-
 -- Options
 lvim.format_on_save = true
 vim.opt.number = true
 vim.opt.wrap = true
 
+
+-- Mason
+require("mason-null-ls").setup({
+  ensure_installed = {
+    "black",
+    "prettier",
+    "xmlformat",
+    "flake8",
+  },
+  automatic_installation = false,
+  handlers = {},
+})
+
+-- Formatters
+local formatters = require "lvim.lsp.null-ls.formatters"
+formatters.setup {
+  { name = "black" },
+  { name = "prettier" },
+  { name = "xmlformat" },
+}
+
+-- Linters
+local linters = require "lvim.lsp.null-ls.linters"
+linters.setup {
+  { name = "flake8" },
+}
+
+-- LSP
+vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "tailwindcss", "tsserver", "ts_ls" })
+lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
+  return server ~= "denols" and server ~= "sqlls"
+end, lvim.lsp.automatic_configuration.skipped_servers)
+local nvim_lsp = require('lspconfig')
+nvim_lsp.denols.setup({})
+
+nvim_lsp.tsserver.setup {
+  on_attach = on_attach,
+  root_dir = nvim_lsp.util.root_pattern("package.json"),
+  single_file_support = false
+}
