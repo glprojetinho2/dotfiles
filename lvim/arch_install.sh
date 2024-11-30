@@ -3,11 +3,40 @@
 function setup_nerd_font_in_alacritty() {
   mkdir -p $HOME/.config/alacritty
   family=$(fc-list : family | grep $NERD_FONT_NAME | sort -n | head -n1)
-  echo -e "[font]\nsize = 10.0\n\n[font.bold]\nfamily = \"$family\"\nstyle = \"Bold\"\n\n[font.bold_italic]\nfamily = \"$family\"\nstyle = \"Bold Italic\"\n\n[font.italic]\nfamily = \"$family\"\nstyle = \"Italic\"\n\n[font.normal]\nfamily = \"$family\"\nstyle = \"Regular\"\n" >> $HOME/.config/alacritty/alacritty.toml
+  config=$HOME/.config/alacritty/alacritty.toml
+  touch $config
+  python3 <<EOF
+import toml
+config = toml.load("$config")
+config.update(
+{
+  "font": {
+    "size": 10,
+    "bold": {
+      "family": "$family",
+      "style": "Bold"
+    },
+    "bold_italic": {
+      "family": "$family",
+      "style": "Bold Italic"
+    },
+    "italic": {
+      "family": "$family",
+      "style": "Italic"
+    },
+    "normal": {
+      "family": "$family",
+      "style": "Regular"
+    }
+  }
+}
+)
+with open("$config", "w") as f:
+    print(toml.dump(config, f))
+toml.dump
+EOF
   echo sucesso
 }
-setup_nerd_font_in_alacritty
-clear
 
 if [[ -z "$NERD_FONT_NAME" ]]
   then 
@@ -15,10 +44,14 @@ if [[ -z "$NERD_FONT_NAME" ]]
 export NERD_FONT_NAME=0xProto"
     exit 1
 fi
+
 echo $HOME 
 cd $HOME 
-yes y | yay -S unzip getnf alacritty neovim
+yes y | yay -S --needed unzip getnf alacritty neovim python-toml
 clear
+setup_nerd_font_in_alacritty
+clear
+
 getnf -i $NERD_FONT_NAME
 
 clear
