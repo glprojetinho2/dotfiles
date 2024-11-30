@@ -10,10 +10,6 @@ lvim.plugins = {
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {}
   },
-  {
-    'Exafunction/codeium.vim',
-    event = 'BufEnter',
-  },
   { "mcchrish/zenbones.nvim", dependencies = "rktjmp/lush.nvim" },
   {
     "nvim-neotest/neotest",
