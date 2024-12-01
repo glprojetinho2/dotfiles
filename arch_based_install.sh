@@ -11,6 +11,7 @@ clear
 # alguns programas essenciais
 yes y | yay -S --needed anki-bin librewolf-bin syncthing ripgrep alacritty lldb rustup git-credential-oauth 
 pipx install jrnl
+rustup default stable
 cargo install tealdeer
 clear
 
