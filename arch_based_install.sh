@@ -27,11 +27,12 @@ sed '2s/.*/numlockx \&/' -i $HOME/.bash_profile
 # configura o i3wm
 curl --tlsv1.3 --proto "=https" https://raw.githubusercontent.com/glprojetinho2/dotfiles/main/i3wm/config -Ssf > $HOME/.i3/config
 
-#configura o lvim
-curl --tlsv1.3 --proto "=https" https://raw.githubusercontent.com/glprojetinho2/dotfiles/main/lvim/config.lua -Ssf > $HOME/.config/lvim/config.lua
-
 export NERD_FONT_NAME=0xProto
 # instala o lvim
 curl --tlsv1.3 --proto "=https" https://raw.githubusercontent.com/glprojetinho2/dotfiles/main/lvim/arch_install.sh -Ssf | sh
+
+#configura o lvim
+mkdir -p $HOME/.config/lvim
+curl --tlsv1.3 --proto "=https" https://raw.githubusercontent.com/glprojetinho2/dotfiles/main/lvim/config.lua -Ssf > $HOME/.config/lvim/config.lua
 
 librewolf --setDefaultBrowser
