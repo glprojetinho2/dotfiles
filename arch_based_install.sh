@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# previne erro de chave PGP
+pacman -S archlinux-keyring
+
 # instala o pipx
 yes y | sudo pacman -S --needed python-pip python python-pipx
 python3 -m pipx ensurepath
