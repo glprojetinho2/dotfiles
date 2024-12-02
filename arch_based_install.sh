@@ -13,7 +13,7 @@ sudo pacman -S --needed --noconfirm python-pip python python-pipx || { echo "fal
 python3 -m pipx ensurepath
 
 # alguns programas essenciais
-yay -S --needed --noconfirm anki-bin librewolf-bin syncthing ripgrep alacritty lldb rustup git-credential-oauth || { echo "falha ao instalar pacotes essenciais"; exit 1; }
+yay -S --needed --noconfirm anki-bin librewolf-bin syncthing ripgrep alacritty lldb rustup git-credential-oauth pipewire pipewire-pulse pwvucontrol lazygit || { echo "falha ao instalar pacotes essenciais"; exit 1; }
 pipx install jrnl
 rustup default stable
 cargo install tealdeer
