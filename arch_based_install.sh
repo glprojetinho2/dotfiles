@@ -13,11 +13,11 @@ sudo pacman -S --needed --noconfirm python-pip python python-pipx || { echo "fal
 python3 -m pipx ensurepath
 
 # alguns programas essenciais
-yay -S --needed --noconfirm anki-bin librewolf-bin syncthing ripgrep alacritty lldb rustup git-credential-oauth pipewire pipewire-pulse pwvucontrol lazygit || { echo "falha ao instalar pacotes essenciais"; exit 1; }
+yay -S --needed --noconfirm anki-bin librewolf-bin syncthing ripgrep alacritty lldb rustup git-credential-oauth pipewire pipewire-pulse pwvucontrol lazygit tealdeer || { echo "falha ao instalar pacotes essenciais"; exit 1; }
 pipx install jrnl
+tldr --update
 rustup default stable
 rustup component add rust-src rust-analyzer
-cargo install tealdeer
 
 # inicializa o git credential oauth
 git-credential-oauth configure
@@ -27,6 +27,7 @@ git config --global --add credential.helper oauth
 
 # ativa numlock ao iniciar shell
 grep numlockx .bashrc || echo "numlockx" >> .bashrc
+grep "export EDITOR=vim" .bashrc || echo "export EDITOR=vim" >> .bashrc
 
 fetch_cfg () {
 	file=$1

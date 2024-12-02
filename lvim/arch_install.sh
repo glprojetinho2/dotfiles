@@ -11,7 +11,7 @@ config = toml.load("$config")
 config.update(
 {
   "font": {
-    "size": 10,
+    "size": 8,
     "bold": {
       "family": "$family",
       "style": "Bold"
@@ -28,6 +28,9 @@ config.update(
       "family": "$family",
       "style": "Regular"
     }
+  },
+  "selection": {
+    "save_to_clipboard": True
   }
 }
 )
