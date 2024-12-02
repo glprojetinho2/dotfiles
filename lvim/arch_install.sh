@@ -47,14 +47,12 @@ fi
 
 echo $HOME 
 cd $HOME 
-yes y | yay -S --needed unzip getnf alacritty neovim python-toml
-clear
+yay -S --needed --noconfirm unzip getnf alacritty neovim python-toml
+
 setup_nerd_font_in_alacritty
-clear
 
 getnf -i $NERD_FONT_NAME
 
-clear
 # installs NVM (Node Version Manager) 
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash 
 export NVM_DIR="$HOME/.nvm" 
@@ -70,7 +68,6 @@ node -v # should print `v20.12.1`
 # verifies the right NPM version is in the environment
 npm -v # should print `10.5.0` 
 
-clear
 echo 'export PATH=$HOME/.local/bin:$PATH' >> ~/.bashrc 
 export PATH=$HOME/.local/bin:$PATH 
 bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/uninstall.sh) 
