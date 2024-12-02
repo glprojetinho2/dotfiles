@@ -16,6 +16,7 @@ python3 -m pipx ensurepath
 yay -S --needed --noconfirm anki-bin librewolf-bin syncthing ripgrep alacritty lldb rustup git-credential-oauth pipewire pipewire-pulse pwvucontrol lazygit || { echo "falha ao instalar pacotes essenciais"; exit 1; }
 pipx install jrnl
 rustup default stable
+rustup component add rust-src rust-analyzer
 cargo install tealdeer
 
 # inicializa o git credential oauth
@@ -25,7 +26,7 @@ git config --global --add credential.helper "cache --timeout 21600" # seis horas
 git config --global --add credential.helper oauth
 
 # ativa numlock ao iniciar shell
-grep numlockx .bashrc || echo "numlockx &" >> .bashrc
+grep numlockx .bashrc || echo "numlockx" >> .bashrc
 
 fetch_cfg () {
 	file=$1
