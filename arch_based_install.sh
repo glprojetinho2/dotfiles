@@ -24,8 +24,8 @@ git config --global --unset-all credential.helper
 git config --global --add credential.helper "cache --timeout 21600" # seis horas
 git config --global --add credential.helper oauth
 
-# ativa numlock ao iniciar o PC
-sed '2s/.*/numlockx \&/' -i $HOME/.bash_profile
+# ativa numlock ao iniciar shell
+grep numlockx .bashrc || echo "numlockx &" >> .bashrc
 
 fetch_cfg () {
 	file=$1
