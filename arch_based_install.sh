@@ -25,6 +25,9 @@ git config --global --unset-all credential.helper
 git config --global --add credential.helper "cache --timeout 21600" # seis horas
 git config --global --add credential.helper oauth
 
+# atualiza db de informações sobre comandos
+sudo mandb
+
 # ativa numlock ao iniciar shell
 grep numlockx .bashrc || echo "numlockx" >> .bashrc
 grep "export EDITOR=vim" .bashrc || echo "export EDITOR=vim" >> .bashrc
