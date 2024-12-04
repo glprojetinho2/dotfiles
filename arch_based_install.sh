@@ -28,9 +28,13 @@ git config --global --add credential.helper oauth
 # atualiza db de informações sobre comandos
 sudo mandb
 
+fn append_to_rc(){
+  grep $1 .bashrc || echo $1 >> .bashrc
+}
 # ativa numlock ao iniciar shell
-grep numlockx .bashrc || echo "numlockx" >> .bashrc
-grep "export EDITOR=vim" .bashrc || echo "export EDITOR=vim" >> .bashrc
+append_to_rc numlockx
+append_to_rc "export EDITOR=vim"
+append_to_rc 'export PATH="$HOME/.local/share/nvim/mason/bin/:$PATH"' 
 
 fetch_cfg () {
 	file=$1
@@ -38,6 +42,15 @@ fetch_cfg () {
 	url="https://raw.githubusercontent.com/glprojetinho2/dotfiles/main"
 	curl --tlsv1.3 --proto "=https" "$url/$file" -Ssf > $path_to_copy_to
 }
+
+append_to_rc () {
+  grep "$1" ~/.bashrc || echo "$1" >> ~/.bashrc
+}
+
+# ativa numlock ao iniciar shell
+append_to_rc numlockx
+append_to_rc "export EDITOR=vim"
+append_to_rc 'export PATH="$HOME/.local/share/lvim/mason/bin/:$PATH"' 
 
 # configura o vim
 fetch_cfg .vimrc $HOME/.vimrc
