@@ -20,7 +20,7 @@ cd paru
 makepkg -si
 
 # alguns programas essenciais
-paru -S --needed --noconfirm python-pip python python-pipx anki-bin librewolf-bin syncthing ripgrep alacritty lldb rustup git-credential-oauth pipewire pipewire-pulse pwvucontrol lazygit tealdeer kdotool nemo wmenu polkit sway jq swaylock-effects-git || { echo "falha ao instalar pacotes essenciais"; exit 1; }
+paru -S --needed --noconfirm python-pip python python-pipx anki-bin librewolf-bin syncthing ripgrep alacritty lldb rustup git-credential-oauth pipewire pipewire-pulse pwvucontrol lazygit tealdeer kdotool nemo wmenu polkit sway jq swaylock-effects-git grim slurp || { echo "falha ao instalar pacotes essenciais"; exit 1; }
 pipx install jrnl
 tldr --update
 rustup default stable

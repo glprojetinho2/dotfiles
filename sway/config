@@ -23,7 +23,7 @@ bindsym $mod+n border normal
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font xft:URWGothic-Book 11
+# font pango:"GohuFont 14 Nerd Font" 11
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
@@ -57,9 +57,8 @@ bindsym $mod+F5 exec alacritty -e 'mocp'
 bindsym $mod+t exec --no-startup-id pkill picom
 bindsym $mod+Ctrl+t exec --no-startup-id picom -b
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
-bindsym Print exec --no-startup-id i3-scrot
-bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
-bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
+bindsym Print exec --no-startup-id grim - | wl-copy -t 'image/png'
+bindsym $mod+Print exec --no-startup-id grim -g "$(slurp -d)" - | wl-copy -t 'image/png'
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 bindsym $mod+z exec ~/.config/myscripts/screen_recorder.sh
 
@@ -322,11 +321,11 @@ bindsym $mod+m bar mode toggle
 
 # Theme colors
 # class                   border  backgr. text    indic.   child_border
-  client.focused          #E3FC07 #556064 #80FFF9 #FDF6E3
-  client.focused_inactive #C3C600 #2F3D44 #1ABC9C #454948
-  client.unfocused        #C3C600 #2F3D44 #1ABC9C #454948
-  client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
-  client.placeholder      #000000 #0c0c0c #ffffff #000000 
+  client.focused          #505050 #505050 #ffffff #000000
+  client.focused_inactive #303030 #303030 #ffffff #000000
+  client.unfocused        #000000 #000000 #ffffff #000000
+  client.urgent           #707070 #707070 #ffffff #000000
+  client.placeholder      #909090 #909090 #ffffff #000000 
 
   client.background       #2B2C2B
 

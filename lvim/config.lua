@@ -80,7 +80,6 @@ lvim.colorscheme = "randombones"
 -- Bindings
 lvim.keys.normal_mode["<TAB>"] = ":bn<CR>"
 lvim.keys.normal_mode["<S-TAB>"] = ":bp<CR>"
-lvim.keys.normal_mode["<leader>t"] = ":Neotest run<CR>"
 lvim.keys.normal_mode["<leader>y"] = ":%y<CR>"
 lvim.keys.normal_mode["<leader>zh"] = ":set cmdheight=1<CR>"
 lvim.keys.normal_mode["<leader>h"] = ":nohlsearch<CR>"
@@ -88,6 +87,9 @@ lvim.keys.normal_mode["<leader>r"] = ":e<CR>"
 lvim.keys.normal_mode["<leader>a"] =
 ":call system(\"deno test --allow-all /home/ferramentas/Downloads/sankhyasul/scriptsts/tests/experimentos/experimentos.test.ts --filter t123\")<CR>"
 lvim.keys.normal_mode["<leader>sT"] = ":TodoTelescope<CR>"
+lvim.keys.normal_mode["<leader>tq"] = ":copen<CR>"
+lvim.keys.normal_mode["<leader>tn"] = ":cn<CR>"
+lvim.keys.normal_mode["<leader>tp"] = ":cp<CR>"
 lvim.keys.normal_mode["\""] =
 ":s/ignore: \\(true\\|false\\)/\\=submatch(1) == 'true' ? 'ignore: false' : 'ignore: true'/g<CR>"
 
