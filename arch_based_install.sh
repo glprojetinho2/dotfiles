@@ -42,11 +42,6 @@ fn append_to_rc(){
 append_to_rc "export EDITOR=vim"
 append_to_rc 'export PATH="$HOME/.local/share/nvim/mason/bin/:$PATH"' 
 
-fetch_cfg () {
-	file=$1
-	path_to_copy_to=$2
-  ln -srf $file $path_to_copy_to
-}
 
 append_to_rc () {
   grep "$1" ~/.bashrc || echo "$1" >> ~/.bashrc
@@ -56,33 +51,8 @@ append_to_rc () {
 append_to_rc "export EDITOR=vim"
 append_to_rc 'export PATH="$HOME/.local/share/lvim/mason/bin/:$PATH"' 
 
-# configura o vim
-fetch_cfg .vimrc $HOME/.vimrc
-
-# configura o i3wm
-fetch_cfg i3wm/config $HOME/.i3/config
-
-# configura o sway
-fetch_cfg sway/config $HOME/.sway/config
-
-# configura a lock screen
-mkdir -p $HOME/.config/swaylock
-fetch_cfg swaylock/config.idle $HOME/.config/swaylock/config.idle
-fetch_cfg lock.png $HOME/lock.png
-
-# configura o wallpaper
-fetch_cfg wallpaper.png $HOME/wallpaper.png
-
 export NERD_FONT_NAME=0xProto
 # instala o lvim caso já não esteja instalado
 lvim -v || ./lvim/arch_install.sh || { echo "falha ao instalar lvim"; exit 1; }
-
-#configura o lvim
-mkdir -p $HOME/.config/lvim
-fetch_cfg lvim/config.lua $HOME/.config/lvim/config.lua
-
-#configura scripts
-mkdir $HOME/.config/myscripts
-fetch_cfg screen_recorder.sh $HOME/.config/myscripts/screen_recorder.sh
 
 librewolf --setDefaultBrowser
