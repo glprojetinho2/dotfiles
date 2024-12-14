@@ -53,6 +53,7 @@ bindsym $mod+Ctrl+m exec pwvucontrol
 bindsym $mod+Ctrl+b exec alacritty -e 'bmenu'
 bindsym $mod+F2 exec librewolf
 bindsym $mod+F3 exec nemo
+bindsym $mod+F4 exec anki
 bindsym $mod+F5 exec alacritty -e 'mocp'
 bindsym $mod+t exec --no-startup-id pkill picom
 bindsym $mod+Ctrl+t exec --no-startup-id picom -b
