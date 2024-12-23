@@ -28,6 +28,7 @@ lvim.plugins = {
     end
   },
   { "markemmons/neotest-deno" },
+  { "norcalli/nvim-colorizer.lua" },
   {
     "nvim-pack/nvim-spectre",
     dependencies = {
@@ -74,6 +75,9 @@ lvim.plugins = {
     build = function() vim.fn["mkdp#util#install"]() end,
   }
 }
+
+-- colors
+require'colorizer'.setup()
 
 lvim.colorscheme = "randombones"
 

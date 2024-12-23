@@ -8,3 +8,4 @@ set number
 set ignorecase
 set smartcase
 nnoremap <C-c> :%y+<CR>
+nnoremap <C-y> :w !bash<CR>
