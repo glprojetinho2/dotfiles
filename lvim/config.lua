@@ -96,6 +96,7 @@ lvim.keys.normal_mode["<leader>tn"] = ":cn<CR>"
 lvim.keys.normal_mode["<leader>tp"] = ":cp<CR>"
 lvim.keys.normal_mode["\""] =
 ":s/ignore: \\(true\\|false\\)/\\=submatch(1) == 'true' ? 'ignore: false' : 'ignore: true'/g<CR>"
+lvim.keys.normal_mode["<C-y>"] = ":w !bash<CR>"
 
 -- Options
 lvim.format_on_save = true
