@@ -35,7 +35,7 @@ bindsym $mod+Return exec alacritty -e fish
 bindsym $mod+Shift+c kill
 
 # start program launcher
-bindsym $mod+p exec --no-startup-id wmenu-run -N FAF9F6 -n 000000 -S F70202 -s FFFFFF
+bindsym $mod+p exec --no-startup-id bemenu-run
 
 ################################################################################################
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
@@ -51,7 +51,7 @@ bindsym $mod+Ctrl+m exec pwvucontrol
 
 # Start Applications
 bindsym $mod+Ctrl+b exec alacritty -e fish -e 'bmenu'
-bindsym $mod+F2 exec librewolf
+bindsym $mod+F2 exec qutebrowser
 bindsym $mod+F3 exec nemo
 bindsym $mod+F4 exec anki
 bindsym $mod+F5 exec alacritty -e fish -e 'mocp'
@@ -382,3 +382,5 @@ mode "$mode_gaps_outer" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
+
+exec "python $HOME/.sway/scripts/inactive.py"

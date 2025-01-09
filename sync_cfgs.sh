@@ -18,7 +18,10 @@ fi
 fetch_cfg i3wm/config $HOME/.i3/config
 
 # configura o sway
-fetch_cfg sway/config $HOME/.sway/config
+fetch_cfg sway $HOME/.sway
+
+# configura o alacritty (terminal)
+fetch_cfg alacritty.toml $HOME/.config/alacritty/alacritty.toml
 
 # configura o waybar
 fetch_cfg waybar/config.jsonc $HOME/.config/waybar/config
@@ -31,14 +34,24 @@ fetch_cfg lock.png $HOME/lock.png
 # configura o wallpaper
 fetch_cfg wallpaper.png $HOME/wallpaper.png
 
-# configura o lvim
-fetch_cfg lvim/config.lua $HOME/.config/lvim/config.lua
+# configura o helix
+fetch_cfg helix/config.toml $HOME/.config/helix/config.toml
 
 # configura scripts
-fetch_cfg screen_recorder.sh $HOME/.config/myscripts/screen_recorder.sh
+fetch_cfg scripts/screen_recorder.sh $HOME/.config/myscripts/screen_recorder.sh
 
 # configura o starship
 fetch_cfg starship/config.toml $HOME/.config/starship.toml
 
 # configura o fish
 fetch_cfg fish/config.fish $HOME/.config/fish/config.fish
+
+# configura o qutebrowser
+rm -rf ~/.config/qutebrowser
+ln -srf qutebrowser $HOME/.config/qutebrowser 
+xdg-settings set default-web-browser org.qutebrowser.qutebrowser.desktop
+
+ln -srf qutebrowser/quickmarks qutebrowser-for-shitty-websites/quickmarks
+ln -srf qutebrowser/bookmarks qutebrowser-for-shitty-websites/bookmarks
+mkdir -p $HOME/.config/qutebrowser-for-shitty-websites
+ln -srf qutebrowser-for-shitty-websites $HOME/.config/qutebrowser-for-shitty-websites/config
