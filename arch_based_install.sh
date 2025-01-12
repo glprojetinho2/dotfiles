@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# sincroniza configs
+./sync_cfgs.sh
+
 # previne erro de chave PGP
 sudo pacman -S --needed --noconfirm archlinux-keyring || { echo "falha ao instalar archlinux-keyring"; exit 1; }
 
@@ -15,15 +18,13 @@ python3 -m pipx ensurepath
 # instala o paru
 mkdir Programas
 cd Programas
-git clone https://aur.archlinux.org/paru.git
-cd paru
-makepkg -si
+paru --version || eval "git clone https://aur.archlinux.org/paru.git && cd paru && makepkg -si"
 
-sudo pacman -Rs manjaro-i3-settings
+sudo pacman -Rs manjaro-i3-settings morc_menu dmenu-manjaro
 
 # alguns programas essenciais
-paru -S --needed --noconfirm python-pip python python-pipx python-i3ipc anki-bin syncthing ripgrep alacritty lldb rustup git-credential-oauth pipewire pipewire-pulse pwvucontrol lazygit tealdeer kdotool nemo polkit sway jq swaylock-effects-git grim slurp zoxide blesh fish fisher torbrowser-launcher tor bemenu-wlroots qutebrowser calibre helix || { echo "falha ao instalar pacotes essenciais"; exit 1; }
-pipx install jrnl
+paru -S --needed --noconfirm python-pip python python-pipx python-i3ipc anki-bin syncthing ripgrep swaybg alacritty lldb rustup git-credential-oauth pipewire pipewire-pulse pwvucontrol lazygit tealdeer kdotool nemo polkit multibg-sway waybar sway jq wl-clipboard swaylock-effects-git grim slurp zoxide blesh fish fisher torbrowser-launcher tor bemenu-wlroots qutebrowser calibre helix starship || { echo "falha ao instalar pacotes essenciais"; exit 1; }
+jrnl -v || pipx install jrnl
 tldr --update
 rustup default stable
 rustup component add rust-src rust-analyzer
@@ -39,11 +40,6 @@ git config --global --add credential.helper oauth
 
 # atualiza db de informações sobre comandos
 sudo mandb
-
-# configura o TOR
-sudo pacman -S tor
-systemctl enable tor.service
-systemctl start tor.service
 
 # configura as fontes no alacritty
 export NERD_FONT_NAME=0xProto
@@ -91,6 +87,7 @@ EOF
 setup_nerd_font_in_alacritty
 getnf -i $NERD_FONT_NAME
 
-# sincroniza configs
-./sync_cfgs.sh
+# configura o TOR
+sudo systemctl enable tor.service
+sudo systemctl start tor.service
 

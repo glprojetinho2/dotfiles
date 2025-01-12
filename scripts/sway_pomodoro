@@ -1,0 +1,7 @@
+#!/bin/fish
+set pomodoro_status $(i3-gnome-pomodoro status --format=waybar --show-seconds)
+if test -z $pomodoro_status
+    echo '{"class": "paused", "text": "", "tooltip": "Right click to start."}'
+else
+    echo $pomodoro_status
+end

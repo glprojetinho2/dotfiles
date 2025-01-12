@@ -4,6 +4,9 @@ size = 8
 [selection]
 save_to_clipboard = true
 
+[terminal]
+shell = "/usr/bin/fish"
+
 [font.bold]
 family = "0xProto Nerd Font"
 style = "Bold"
@@ -19,7 +22,3 @@ style = "Italic"
 [font.normal]
 family = "0xProto Nerd Font"
 style = "Regular"
-
-[terminal]
-shell = "/usr/bin/fish"
-

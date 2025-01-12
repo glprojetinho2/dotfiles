@@ -1,9 +1,14 @@
+#!/bin/bash
+
 fetch_cfg () {
 	file=$1
 	path_to_copy_to=$2
   mkdir -p "$(dirname ${path_to_copy_to})"
   ln -srf $file $path_to_copy_to
 }
+
+# configura aplicações
+sudo ln -srf applications/*.desktop /usr/share/applications/
 
 # configura o vim
 fetch_cfg .vimrc $HOME/.vimrc
@@ -19,6 +24,9 @@ fetch_cfg i3wm/config $HOME/.i3/config
 
 # configura o sway
 fetch_cfg sway $HOME/.sway
+
+# configura os papéis de parede
+ln -srf wallpapers $HOME/.sway/wallpapers
 
 # configura o alacritty (terminal)
 fetch_cfg alacritty.toml $HOME/.config/alacritty/alacritty.toml
