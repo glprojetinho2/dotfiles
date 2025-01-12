@@ -6,22 +6,17 @@
 
 config_version: 2
 settings:
-  content.javascript.enabled:
-    '*://web.whatsapp.com/*': true
-    global: true
-  content.proxy:
-    global: socks://localhost:9050/
   fonts.web.family.standard:
     global: 0xProto Nerd Font
   url.default_page:
-    global: http://4getwebfrq5zr4sxugk6htxvawqehxtdgjrbcn2oslllcol2vepa23yd.onion
+    global: http://4get.ca
   url.searchengines:
     global:
-      DEFAULT: http://4getwebfrq5zr4sxugk6htxvawqehxtdgjrbcn2oslllcol2vepa23yd.onion/web?s={}&scraper=startpage
+      DEFAULT: http://4get.ca/web?s={}&scraper=startpage
       ana: https://annas-archive.org/search?index=&page=1&q={}
       arc: https://archive.org/search?query={}
       en: https://dictionary.cambridge.org/dictionary/english/{}
-      port: https://archive.org/search?query={}&sin=TXT&sort=date&and%5B%5D=language%3A%22Portuguese%22&and%5B%5D=year%3A%5B0+TO+1954%5D
       txt: https://archive.org/search?query={}&sin=TXT
+      git:  https://github.com/search?q={}&type=code
   url.start_pages:
-    global: http://4getwebfrq5zr4sxugk6htxvawqehxtdgjrbcn2oslllcol2vepa23yd.onion
+    global: http://4get.ca

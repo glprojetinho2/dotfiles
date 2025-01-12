@@ -1,0 +1,19 @@
+[editor]
+mouse = false
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
+
+[editor.soft-wrap]
+enable = true
+
+[keys.normal]
+"C-S-t" = ":sh alacritty --working-directory ."
+"space" = { q = ":bc" }
+"tab" = ":buffer-next"
+"S-tab" = ":buffer-previous"
