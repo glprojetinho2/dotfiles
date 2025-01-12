@@ -138,5 +138,14 @@
 		"escape": true,
 		"exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
 		// "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
-	}
+	},
+	 "custom/pomodoro": {
+    "exec": "i3-gnome-pomodoro status --format=waybar --show-seconds",
+     "return-type": "json",
+     "interval": 1,
+     "format": "Pomodoro {}",
+     "on-click": "i3-gnome-pomodoro start",
+     "on-click-middle": "i3-gnome-pomodoro toggle",
+     "on-click-right": "i3-gnome-pomodoro stop",
+ },
 }

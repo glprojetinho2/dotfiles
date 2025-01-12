@@ -16,6 +16,7 @@ settings:
       ana: https://annas-archive.org/search?index=&page=1&q={}
       arc: https://archive.org/search?query={}
       en: https://dictionary.cambridge.org/dictionary/english/{}
+      port: https://archive.org/search?query={}&sin=TXT&sort=date&and%5B%5D=language%3A%22Portuguese%22&and%5B%5D=year%3A%5B0+TO+1954%5D
       txt: https://archive.org/search?query={}&sin=TXT
   url.start_pages:
     global: https://4get.ca

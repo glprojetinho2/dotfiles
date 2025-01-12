@@ -303,7 +303,7 @@ set_from_resource $term_color15    color15
 bar {
   mode hide
 	i3bar_command i3bar
-	status_command i3status
+	status_command i3status | ~/.i3/i3status.py	
 	position bottom
 
 ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
@@ -399,9 +399,14 @@ mode "$mode_gaps_outer" {
         bindsym Escape mode "default"
 }
 
+for_window [title="todo.txt *"] move scratchpad
+exec --no-startup-id alacritty -e helix ~/todo.txt
+exec --no-startup-id i3-msg "move scratchpad"
+exec --no-startup-id i3-msg "scratchpad show"
+
 # startup applications
 exec --no-startup-id qutebrowser
-exec --no-startup-id alacritty -e vim ~/todo.txt
 exec --no-startup-id anki
 exec --no-startup-id gnome-pomodoro
 exec --no-startup-id calibre
+exec --no-startup-id syncthing
