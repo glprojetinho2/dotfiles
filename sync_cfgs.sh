@@ -3,12 +3,10 @@
 fetch_cfg () {
 	file=$1
 	path_to_copy_to=$2
+	rm -rf $path_to_copy_to
   mkdir -p "$(dirname ${path_to_copy_to})"
   ln -srf $file $path_to_copy_to
 }
-
-# configura aplicações
-sudo ln -srf applications/*.desktop /usr/share/applications/
 
 # configura o vim
 fetch_cfg .vimrc $HOME/.vimrc
@@ -52,7 +50,7 @@ fetch_cfg scripts/screen_recorder.sh $HOME/.config/myscripts/screen_recorder.sh
 fetch_cfg starship/config.toml $HOME/.config/starship.toml
 
 # configura o fish
-fetch_cfg fish/config.fish $HOME/.config/fish/config.fish
+fetch_cfg fish $HOME/.config/fish
 
 # configura o qutebrowser
 rm -rf ~/.config/qutebrowser

@@ -91,3 +91,5 @@ getnf -i $NERD_FONT_NAME
 sudo systemctl enable tor.service
 sudo systemctl start tor.service
 
+# configura aplicações
+sudo ln -srf applications/*.desktop /usr/share/applications/
