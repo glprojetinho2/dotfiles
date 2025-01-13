@@ -1,6 +1,9 @@
+#!/bin/bash
+
 fetch_cfg () {
 	file=$1
 	path_to_copy_to=$2
+	rm -rf $path_to_copy_to
   mkdir -p "$(dirname ${path_to_copy_to})"
   ln -srf $file $path_to_copy_to
 }
@@ -19,6 +22,9 @@ fetch_cfg i3wm/config $HOME/.i3/config
 
 # configura o sway
 fetch_cfg sway $HOME/.sway
+
+# configura os papéis de parede
+ln -srf wallpapers $HOME/.sway/wallpapers
 
 # configura o alacritty (terminal)
 fetch_cfg alacritty.toml $HOME/.config/alacritty/alacritty.toml
@@ -44,7 +50,7 @@ fetch_cfg scripts/screen_recorder.sh $HOME/.config/myscripts/screen_recorder.sh
 fetch_cfg starship/config.toml $HOME/.config/starship.toml
 
 # configura o fish
-fetch_cfg fish/config.fish $HOME/.config/fish/config.fish
+fetch_cfg fish $HOME/.config/fish
 
 # configura o qutebrowser
 rm -rf ~/.config/qutebrowser

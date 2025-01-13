@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=Cutebrowser
+TryExec=qutebrowser
+Exec=qutebrowser --basedir ~/.config/qutebrowser-for-shitty-websites/

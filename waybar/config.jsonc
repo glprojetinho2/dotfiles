@@ -9,6 +9,7 @@
 	"modules-left": ["sway/workspaces", "sway/mode", "custom/media"],
 	"modules-center": ["sway/window"],
 	"modules-right": [
+		"custom/pomodoro",
 		"pulseaudio",
 		"network",
 		"backlight",
@@ -138,5 +139,14 @@
 		"escape": true,
 		"exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
 		// "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
-	}
+	},
+	 "custom/pomodoro": {
+    "exec": "sway_pomodoro",
+     "return-type": "json",
+     "interval": 1,
+     "format": "{}",
+     "on-click": "fish -c pomodoro_toggle",
+     "on-click-middle": "i3-gnome-pomodoro stop",
+     "on-click-right": "i3-gnome-pomodoro start",
+ },
 }
