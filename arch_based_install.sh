@@ -22,7 +22,7 @@ makepkg -si
 sudo pacman -Rs manjaro-i3-settings
 
 # alguns programas essenciais
-paru -S --needed --noconfirm python-pip python python-pipx python-i3ipc anki-bin syncthing ripgrep alacritty lldb rustup git-credential-oauth pipewire pipewire-pulse pwvucontrol lazygit tealdeer kdotool nemo polkit sway jq swaylock-effects-git grim slurp zoxide blesh fish fisher torbrowser-launcher tor bemenu-wlroots qutebrowser calibre helix || { echo "falha ao instalar pacotes essenciais"; exit 1; }
+paru -S --needed --noconfirm python-pip python python-pipx python-i3ipc anki-bin syncthing ripgrep alacritty lldb rustup git-credential-oauth pipewire pipewire-pulse pwvucontrol lazygit tealdeer kdotool nemo polkit sway jq swaylock-effects-git grim slurp zoxide blesh fish fisher torbrowser-launcher tor bemenu-wlroots qutebrowser calibre helix glow links pup-bin aha || { echo "falha ao instalar pacotes essenciais"; exit 1; }
 pipx install jrnl
 tldr --update
 rustup default stable
