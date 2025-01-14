@@ -141,7 +141,7 @@
 		// "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
 	},
 	 "custom/pomodoro": {
-    "exec": "sway_pomodoro",
+    "exec": "fish -c sway_pomodoro",
      "return-type": "json",
      "interval": 1,
      "format": "{}",

@@ -24,7 +24,7 @@ fetch_cfg i3wm/config $HOME/.i3/config
 fetch_cfg sway $HOME/.sway
 
 # configura os papéis de parede
-ln -srf wallpapers $HOME/.sway/wallpapers
+fetch_cfg wallpapers $HOME/.sway/wallpapers
 
 # configura o alacritty (terminal)
 fetch_cfg alacritty.toml $HOME/.config/alacritty/alacritty.toml
@@ -53,11 +53,9 @@ fetch_cfg starship/config.toml $HOME/.config/starship.toml
 fetch_cfg fish $HOME/.config/fish
 
 # configura o qutebrowser
-rm -rf ~/.config/qutebrowser
-ln -srf qutebrowser $HOME/.config/qutebrowser 
+fetch_cfg qutebrowser $HOME/.config/qutebrowser 
 xdg-settings set default-web-browser org.qutebrowser.qutebrowser.desktop
 
-ln -srf qutebrowser/quickmarks qutebrowser-for-shitty-websites/quickmarks
-ln -srf qutebrowser/bookmarks qutebrowser-for-shitty-websites/bookmarks
-mkdir -p $HOME/.config/qutebrowser-for-shitty-websites
-ln -srf qutebrowser-for-shitty-websites $HOME/.config/qutebrowser-for-shitty-websites/config
+fetch_cfg qutebrowser/quickmarks qutebrowser-for-shitty-websites/quickmarks
+fetch_cfg qutebrowser/bookmarks qutebrowser-for-shitty-websites/bookmarks
+fetch_cfg qutebrowser-for-shitty-websites $HOME/.config/qutebrowser-for-shitty-websites/config

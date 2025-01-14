@@ -1,4 +1,4 @@
-theme = "acme"
+theme = "catppuccin_latte"
 
 [editor]
 mouse = false
@@ -19,3 +19,4 @@ enable = true
 "space" = { q = ":bc" }
 "tab" = ":buffer-next"
 "S-tab" = ":buffer-previous"
+"C-y" = ":w"

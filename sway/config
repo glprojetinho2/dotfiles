@@ -54,7 +54,8 @@ bindsym $mod+Ctrl+b exec alacritty -e fish -e 'bmenu'
 bindsym $mod+F2 exec qutebrowser
 bindsym $mod+F3 exec nemo
 bindsym $mod+F4 exec anki
-bindsym $mod+F5 exec alacritty -e fish -e 'mocp'
+bindsym $mod+F5 exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym $mod+F6 exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym $mod+t exec --no-startup-id pkill picom
 bindsym $mod+Ctrl+t exec --no-startup-id picom -b
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
@@ -182,6 +183,8 @@ assign [app_id="anki"] $ws2
 assign [app_id="gnome-pomodoro"] $ws2
 for_window [app_id="gnome-pomodoro"] layout tabbed
 assign [app_id="calibre-gui"] $ws3
+
+for_window [shell="xwayland"] title_format "[XWayland] %title"
 
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1
