@@ -41,7 +41,7 @@ fetch_cfg lock.png $HOME/lock.png
 fetch_cfg wallpaper.png $HOME/wallpaper.png
 
 # configura o helix
-fetch_cfg helix/config.toml $HOME/.config/helix/config.toml
+fetch_cfg helix $HOME/.config/helix
 
 # configura scripts
 fetch_cfg scripts/screen_recorder.sh $HOME/.config/myscripts/screen_recorder.sh
