@@ -1,13 +1,13 @@
 format = """
-[ 󰥓󰥓󰥓 ](bg:custom_black fg:#FFFF00)\
+[ 󰥓 ](bg:custom_black fg:custom_white)\
 $os\
 $username\
-[](fg:custom_black bg:#ffffff)\
+[](fg:custom_black bg:custom_white)\
 $directory\
-[](bg:custom_black fg:#ffffff)\
+[](bg:custom_black fg:custom_white)\
 $git_branch\
 $git_status\
-[](fg:custom_black bg:#ffffff)\
+[](fg:custom_black bg:custom_white)\
 $c\
 $elixir\
 $elm\
@@ -20,19 +20,19 @@ $nodejs\
 $nim\
 $rust\
 $scala\
-[](fg:#ffffff bg:custom_black)\
+[](fg:custom_white bg:custom_black)\
 $docker_context\
-[](fg:custom_black bg:custom_dark_yellow)\
+[](fg:custom_black bg:custom_white)\
 $time\
-[ ](fg:custom_dark_yellow)\
+[ ](fg:custom_white)\
 """
 
-right_format = "[](bg:none fg:custom_white)$status[](bg:custom_white fg:custom_dark_yellow)$cmd_duration"
+right_format = "[](bg:none fg:custom_white)$status[](bg:custom_white fg:custom_white)$cmd_duration"
 
 palette = "glproj"
 
 [palettes.glproj]
-custom_yellow = "#FFFF00"
+custom_red = "#FF0000"
 custom_dark_yellow = "#d1d100"
 custom_black = "#000000"
 custom_white = "#FFFFFF"
@@ -44,22 +44,22 @@ custom_white = "#FFFFFF"
 # and use the os module below
 [username]
 show_always = true
-style_user = "bg:custom_black fg:custom_yellow"
-style_root = "bg:custom_black fg:custom_yellow" 
+style_user = "bg:custom_black fg:custom_white"
+style_root = "bg:custom_black fg:custom_white" 
 format = '[$user ]($style)'
-disabled = false
+disabled = true
 
 # An alternative to the username module which displays a symbol that
 # represents the current operating system
 [os]
-style = "bg:custom_dark_yellow"
+style = "bg:custom_white fg:custom_black"
 disabled = true # Disabled by default
 
 [directory]
 style = "bg:custom_white fg:custom_black fg:#000000"
 format = "[ $path ]($style)"
-truncation_length = 3
-truncation_symbol = "…/"
+truncation_length = 1
+truncation_symbol = ""
 
 # Here is how you can shorten some long paths by text replacement
 # similar to mapped_locations in Oh My Posh:
@@ -96,11 +96,11 @@ format = '[ $symbol ($version) ]($style)'
 
 [git_branch]
 symbol = ""
-style = "bg:custom_black"
+style = "bg:custom_black fg:custom_white"
 format = '[ $symbol $branch ]($style)'
 
 [git_status]
-style = "bg:custom_black"
+style = "bg:custom_black fg:custom_white"
 format = '[$all_status$ahead_behind ]($style)'
 
 [golang]
@@ -150,13 +150,13 @@ format = '[ $symbol ($version) ]($style)'
 [time]
 disabled = false
 time_format = "%R" # Hour:Minute Format
-style = "bg:custom_dark_yellow fg:custom_black"
-format = '[ 󰳭 $time ]($style)'
+style = "bg:custom_white fg:custom_black"
+format = '[ ](bg:custom_white fg:custom_black)[󰳭](bg:custom_white fg:custom_red)[ $time ]($style)'
 
 [cmd_duration]
 disabled = false
 min_time = 0
-style = "bg:custom_dark_yellow fg:custom_black"
+style = "bg:custom_white fg:custom_black"
 show_milliseconds = true
 # show_notifications = true
 # notification_timeout = 60000

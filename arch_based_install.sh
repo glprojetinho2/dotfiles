@@ -23,7 +23,7 @@ paru --version || eval "git clone https://aur.archlinux.org/paru.git && cd paru 
 sudo pacman -Rs manjaro-i3-settings morc_menu dmenu-manjaro
 
 # alguns programas essenciais
-paru -S --needed --noconfirm python-pip python python-pipx python-i3ipc anki-bin syncthing ripgrep swaybg imv alacritty lldb rustup git-credential-oauth pipewire pipewire-pulse pwvucontrol lazygit tealdeer kdotool nemo polkit multibg-sway waybar sway jq wl-clipboard swaylock-effects-git grim slurp zoxide fish fisher torbrowser-launcher tor bemenu-wlroots qutebrowser calibre  helix starship glow links pup-bin aha j4-dmenu-desktop || { echo "falha ao instalar pacotes essenciais"; exit 1; }
+paru -S --needed --noconfirm python-pip python python-pipx python-i3ipc anki-bin syncthing ripgrep swaybg imv alacritty lldb rustup git-credential-oauth pipewire pipewire-pulse pwvucontrol lazygit tealdeer kdotool yazi bat polkit multibg-sway waybar sway jq wl-clipboard swaylock-effects-git grim slurp zoxide fish fisher torbrowser-launcher tor bemenu-wlroots qutebrowser calibre  helix starship glow links pup-bin aha j4-dmenu-desktop || { echo "falha ao instalar pacotes essenciais"; exit 1; }
 pipx install jrnl
 tldr --update
 rustup default stable
