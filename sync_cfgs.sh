@@ -27,7 +27,7 @@ fetch_cfg sway $HOME/.sway
 fetch_cfg wallpapers $HOME/.sway/wallpapers
 
 # configura o alacritty (terminal)
-fetch_cfg alacritty.toml $HOME/.config/alacritty/alacritty.toml
+fetch_cfg alacritty $HOME/.config/alacritty
 
 # configura o waybar
 fetch_cfg waybar/config.jsonc $HOME/.config/waybar/config

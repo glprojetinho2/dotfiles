@@ -52,7 +52,7 @@ disabled = true
 # An alternative to the username module which displays a symbol that
 # represents the current operating system
 [os]
-style = "bg:custom_white"
+style = "bg:custom_white fg:custom_black"
 disabled = true # Disabled by default
 
 [directory]
@@ -96,11 +96,11 @@ format = '[ $symbol ($version) ]($style)'
 
 [git_branch]
 symbol = ""
-style = "bg:custom_black"
+style = "bg:custom_black fg:custom_white"
 format = '[ $symbol $branch ]($style)'
 
 [git_status]
-style = "bg:custom_black"
+style = "bg:custom_black fg:custom_white"
 format = '[$all_status$ahead_behind ]($style)'
 
 [golang]
