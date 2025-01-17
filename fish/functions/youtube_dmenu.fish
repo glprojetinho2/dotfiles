@@ -1,4 +1,7 @@
-function youtube_dmenu
+function youtube_dmenu -d "Search youtube using dmenu"
+    # you need to add this to ~/.config/pipe-viewer/pipe-viewer.conf 
+    # ( append it to `custom_layout_format` ).
+    # { align => "right", color => "bold", text => "*ID*", width => 11 },
     pkill dmenu
 
     # Default config directory
