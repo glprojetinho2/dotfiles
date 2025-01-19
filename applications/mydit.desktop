@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=Mydit
+Comment=View images from subreddit
+Exec=fish -c "mydit"

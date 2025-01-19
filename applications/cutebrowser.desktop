@@ -1,4 +1,5 @@
 [Desktop Entry]
 Type=Application
 Name=Cutebrowser
+Comment=Qutebrowser without Tor :(
 Exec=fish -c "qutebrowser --basedir ~/.config/qutebrowser-for-shitty-websites/"

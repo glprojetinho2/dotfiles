@@ -6,8 +6,8 @@
 	"ipc": true,
 	// "width": 1280, // Waybar width
 	// Choose the order of the modules
-	"modules-left": ["sway/workspaces", "sway/mode", "custom/media"],
-	"modules-center": ["sway/window"],
+	"modules-left": ["sway/workspaces", "sway/mode"],
+	"modules-center": ["custom/mpvmusic"],
 	"modules-right": [
 		"custom/pomodoro",
 		"pulseaudio",
@@ -132,14 +132,6 @@
 		"format-source-muted": "",
 		"on-click": "pavucontrol"
 	},
-	"custom/media": {
-		"format": " {}",
-		"return-type": "json",
-		"max-length": 40,
-		"escape": true,
-		"exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
-		// "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
-	},
 	 "custom/pomodoro": {
     "exec": "fish -c sway_pomodoro",
      "return-type": "json",
@@ -149,4 +141,10 @@
      "on-click-middle": "i3-gnome-pomodoro stop",
      "on-click-right": "i3-gnome-pomodoro start",
  },
+ "custom/mpvmusic": {
+	 	 "exec": "fish -c 'musicipc status'",
+     "interval": 1,
+     "format": "{}",
+     "on-click": "fish -c 'musicipc toggleplay'",
+ }
 }

@@ -1,0 +1,5 @@
+[manager]
+prepend_keymap = [
+  { on = ["g", "v"], run = "cd ~/Vídeos"},
+  { on = "<A-y>", run = "plugin wl-clipboard"},
+]
