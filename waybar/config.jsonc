@@ -143,8 +143,11 @@
  },
  "custom/mpvmusic": {
 	 	 "exec": "fish -c 'musicipc status'",
+     "return-type": "json",
      "interval": 1,
      "format": "{}",
      "on-click": "fish -c 'musicipc toggleplay'",
+     "on-scroll-up": "fish -c 'musicipc next'",
+     "on-scroll-down": "fish -c 'musicipc prev'",
  }
 }

@@ -20,7 +20,9 @@ function youtube_wofi -d "Search youtube using wofi"
         return 1
     end
     set video_list (pyt --no-interactive $video_query | sed -e 's/\x1b\[[0-9;]*m//g' -e 's/^ \+//g' -e '/^$/d')
-    if string match -r '^https?://'
+    if string match -r '^https?://' $video_query
+        # a single link already spawns a video,
+        # so we just exit.
         return 0
     end
     set video_id ( string join \n $video_list | wofi --dmenu -l 20 -p "Choose an youtube video: " | tr ' ' '\n')[-1]
