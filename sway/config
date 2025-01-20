@@ -18,7 +18,8 @@ hide_edge_borders none
 
 # change borders
 bindsym $mod+u border none
-bindsym $mod+y exec fish -c "youtube_dmenu"
+bindsym $mod+y exec fish -c "youtube_wofi"
+bindsym $mod+Shift+y exec fish -c "youtube_music_wofi"
 bindsym $mod+n border normal
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -35,7 +36,7 @@ bindsym $mod+Return exec alacritty -e fish
 bindsym $mod+Shift+c kill
 
 # start program launcher
-bindsym $mod+p exec --no-startup-id j4-dmenu-desktop
+bindsym $mod+p exec --no-startup-id wofi --show drun
 
 ################################################################################################
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
@@ -59,6 +60,9 @@ bindsym $mod+F3 exec alacritty -e fish -c y
 bindsym $mod+F4 exec anki
 bindsym $mod+F5 exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym $mod+F6 exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym $mod+F7 exec fish -c "musicipc toggleplay"
+bindsym $mod+F8 exec fish -c "musicipc minusminute"
+bindsym $mod+F9 exec fish -c "musicipc plusminute"
 bindsym $mod+t exec --no-startup-id pkill picom
 bindsym $mod+Ctrl+t exec --no-startup-id picom -b
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
@@ -348,11 +352,11 @@ gaps outer 3
 # gaps outer all plus 5
 
 # Smart gaps (gaps used if only more than one container on the workspace)
-# smart_gaps on
+smart_gaps on
 
 # Smart borders (draw borders around container only if it is not the only container on this workspace) 
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
-# smart_borders on
+smart_borders on
 
 # Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
 set $mode_gaps Gaps: (o) outer, (i) inner
@@ -394,7 +398,8 @@ mode "$mode_gaps_outer" {
 exec "python $HOME/.sway/scripts/inactive.py"
 
 # startup applications
-exec --no-startup-id qutebrowser
+exec --no-startup-id dunst
+exec --no-startup-id okular
 exec --no-startup-id anki
 exec --no-startup-id "gnome-pomodoro --no-default-window"
 exec --no-startup-id calibre

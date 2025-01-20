@@ -1,7 +1,12 @@
 daemonize
-fade-in=4
+image=~/.sway/wallpapers/HDMI-A-1/1.png
+indicator-radius=100
 ignore-empty-password
-effect-blur=6x4
-indicator
-clock
-text-color=blue
+inside-color=FFFFFF
+inside-ver-color=444444
+ring-color=FFFFFF
+ring-ver-color=444444
+ring-wrong-color=FFFFFF
+key-hl-color=444444
+indicator-idle-visible
+text-color=0000ff

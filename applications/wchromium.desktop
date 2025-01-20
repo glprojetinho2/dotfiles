@@ -1,5 +1,6 @@
 [Desktop Entry]
 Type=Application
 Name=WChromium
+Comment=Chromium on wayland
 TryExec=chromium
 Exec=chromium --enable-features=UseOzonePlatform --ozone-platform=wayland

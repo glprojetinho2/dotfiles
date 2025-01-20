@@ -6,6 +6,38 @@
 
 config_version: 2
 settings:
+  editor.command:
+    global:
+    - alacritty
+    - -e
+    - helix
+    - '{file}'
+  editor.encoding:
+    global: utf-8
+  fileselect.folder.command:
+    global:
+    - alacritty
+    - -e
+    - fish
+    - -c
+    - y
+    - --choosedir={}
+  fileselect.multiple_files.command:
+    global:
+    - alacritty
+    - -e
+    - fish
+    - -c
+    - y
+    - --choosefiles={}
+  fileselect.single_file.command:
+    global:
+    - alacritty
+    - -e
+    - fish
+    - -c
+    - y
+    - --choosefile={}
   fonts.web.family.standard:
     global: 0xProto Nerd Font
   url.default_page:
@@ -16,7 +48,7 @@ settings:
       ana: https://annas-archive.org/search?index=&page=1&q={}
       arc: https://archive.org/search?query={}
       en: https://dictionary.cambridge.org/dictionary/english/{}
+      git: https://github.com/search?q={}&type=code
       txt: https://archive.org/search?query={}&sin=TXT
-      git:  https://github.com/search?q={}&type=code
   url.start_pages:
     global: http://4get.ca

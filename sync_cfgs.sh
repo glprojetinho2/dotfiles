@@ -52,6 +52,12 @@ fetch_cfg starship/config.toml $HOME/.config/starship.toml
 # configura o fish
 fetch_cfg fish $HOME/.config/fish
 
+# configura o pipe-viewer
+fetch_cfg pipe-viewer/pipe-viewer.conf $HOME/.config/pipe-viewer/pipe-viewer.conf
+
+# configura o yazi (explorador de arquivos)
+fetch_cfg yazi $HOME/.config/yazi
+
 # configura o qutebrowser
 fetch_cfg qutebrowser $HOME/.config/qutebrowser 
 xdg-settings set default-web-browser org.qutebrowser.qutebrowser.desktop
@@ -59,3 +65,8 @@ xdg-settings set default-web-browser org.qutebrowser.qutebrowser.desktop
 fetch_cfg qutebrowser/quickmarks qutebrowser-for-shitty-websites/quickmarks
 fetch_cfg qutebrowser/bookmarks qutebrowser-for-shitty-websites/bookmarks
 fetch_cfg qutebrowser-for-shitty-websites $HOME/.config/qutebrowser-for-shitty-websites/config
+
+if [ ! -z $1 ]; then
+	# configura aplicações
+	sudo ln -srf applications/*.desktop /usr/share/applications/
+fi

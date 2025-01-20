@@ -1,7 +1,7 @@
 function mydit --description 'gets images from reddit'
     # Original script at https://github.com/Bugswriter/redyt
     # Check if necessary programs are installed
-    for prog in dmenu jq imv
+    for prog in wofi jq imv
         test -z "$(which "$prog")"; and echo "Please install $prog!"; and return 1
     end
 
@@ -9,7 +9,7 @@ function mydit --description 'gets images from reddit'
     test -z "$(which notify-send)"; and set notifier echo; or set notifier notify-send
     argparse l/limit= k/keep v/verbose -- $argv
     set -q _flag_limit
-    or set _flag_limit 100
+    or set _flag_limit 50
     if not string match -qr '^[0-9]+$' -- $_flag_limit
         echo "limit should be an integer"
         return 1
@@ -32,12 +32,14 @@ function mydit --description 'gets images from reddit'
 
     # If subreddit.txt does not exist, create it to prevent
     # the program from not functioning properly
-    test -f "$configdir/subreddit.txt"; or echo "$defaultsub" >>"$configdir/subreddit.txt"
+    if not test -f "$configdir/subreddit.txt"
+        echo "$defaultsub" >>"$configdir/subreddit.txt"
+    end
 
     # If no argument is passed
     if test -z "$argv"
         # Ask the user to enter a subreddit
-        set subreddit (dmenu -p "Select Subreddit r/" -i -l 10 < "$configdir/subreddit.txt" | awk -F "|" '{print $1}')
+        set subreddit (wofi --dmenu -p "Select Subreddit r/" -i -l 10 < $configdir/subreddit.txt | awk -F "|" '{print $1}')
 
         # If no subreddit was chosen, exit
         test -z "$subreddit"; and echo "no sub chosen"; and return 1
@@ -63,7 +65,7 @@ function mydit --description 'gets images from reddit'
     curl -H "User-agent: 'your bot 0.1'" "https://www.reddit.com/r/$subreddit/hot.json?limit=$_flag_limit" >"$cachedir/tmp.json"
 
     # Create a list of images
-    set imgs (jq '.' < "$cachedir/tmp.json" | grep url_overridden_by_dest | grep -Eo "http(s|)://.*(jpg|png)\b" | sort -u)
+    set imgs (jq '.' < "$cachedir/tmp.json" | grep url_overridden_by_dest | grep -Eo "http(s|)://.*(jpeg|jpg|png)\b" | sort -u)
 
     # If there are no images, exit
     test -z "$imgs"

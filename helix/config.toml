@@ -16,6 +16,10 @@ enable = true
 
 [keys.normal]
 "C-S-t" = ":sh alacritty --working-directory ."
+"C-h"=["jump_view_left"]
+"C-l"=["jump_view_right"]
+"C-j"=["jump_view_down"]
+"C-k"=["jump_view_up"]
 "space" = { q = ":bc" }
 "tab" = ":buffer-next"
 "S-tab" = ":buffer-previous"

@@ -1,7 +1,6 @@
 #!/bin/fish
 function imitar
     set -l IFS
-    set -l copy_cmd wl-copy
     set -l palavra $(echo "$argv[1]" | iconv -f utf8 -t ascii//TRANSLIT)
     set -l padrao_regex $argv[2]
     set -l caminho_livro $LIVRO
@@ -23,6 +22,5 @@ function imitar
 
     set -l resposta_raw $(echo "$definicao\n\n\nEXEMPLOS:\n\n$exemplos\n")
     set -l resposta $( echo "$resposta_raw\n"| aha)
-    eval 'echo "$resposta\n" | $copy_cmd'
-    echo "$resposta_raw"
+    echo $resposta | wl-copy -t text/html
 end
