@@ -2,21 +2,22 @@
   border: none;
   border-radius: 4px;
   /* `ttf-font-awesome` is required to be installed for icons */
-  font-family: "Roboto Mono Medium", Helvetica, Arial, sans-serif;
+  font-family: "Terminess Nerd Font", Helvetica, Arial, sans-serif;
 
   /* adjust font-size value to your liking: */
-  font-size: 10px;
+  font-size: 12px;
 
   min-height: 0;
 }
 
 window#waybar {
   background-color: rgba(0, 0, 0, 0.9);
+  background-image: url('waybar.png');
   /* border-bottom: 3px solid rgba(100, 114, 125, 0.5); */
   color: #ffffff;
   /* transition-property: background-color; */
   /* transition-duration: .5s; */
-  /* border-radius: 0; */
+  border-radius: 0;
 }
 
 /* window#waybar.hidden {

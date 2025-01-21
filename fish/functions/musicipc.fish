@@ -32,7 +32,7 @@ function musicipc -d "Control music playback externally"
             mpv_command playlist-prev
         case status
             function format_time
-                if test (string length $argv[1]) -eq 1
+                if test (string length $argv[1]; or return 0) -eq 1
                     echo "0$argv[1]"
                 else
                     echo $argv[1]
@@ -45,6 +45,9 @@ function musicipc -d "Control music playback externally"
             set seconds (format_time $seconds)
 
             function relative_song -d "`relative_song \$playlist +1` fetches the next song"
+                if test (count $argv) -ne 3
+                    return 1
+                end
                 set playlist $argv[1]
                 set song_url $argv[2]
                 set offset $argv[3]
@@ -55,7 +58,7 @@ function musicipc -d "Control music playback externally"
 
             set song_url (mpv_command get_property filename | jq -r '.data') # this is actually `watch?v=???`
             set playlist (mpv_command get_property playlist )
-            set song_title (relative_song $playlist $song_url '+0')
+            set song_title (relative_song $playlist $song_url '+0'); or return 1
 
             set next (relative_song $playlist $song_url '+1')
             if not test -z $next
