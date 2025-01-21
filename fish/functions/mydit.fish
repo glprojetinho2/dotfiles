@@ -1,7 +1,7 @@
 function mydit --description 'gets images from reddit'
     # Original script at https://github.com/Bugswriter/redyt
     # Check if necessary programs are installed
-    for prog in wofi jq imv
+    for prog in rofi jq imv
         test -z "$(which "$prog")"; and echo "Please install $prog!"; and return 1
     end
 
@@ -39,7 +39,7 @@ function mydit --description 'gets images from reddit'
     # If no argument is passed
     if test -z "$argv"
         # Ask the user to enter a subreddit
-        set subreddit (wofi --dmenu -p "Select Subreddit r/" -i -l 10 < $configdir/subreddit.txt | awk -F "|" '{print $1}')
+        set subreddit (rofi -dmenu -i -p "Select Subreddit r/" -i -l 10 < $configdir/subreddit.txt | awk -F "|" '{print $1}')
 
         # If no subreddit was chosen, exit
         test -z "$subreddit"; and echo "no sub chosen"; and return 1

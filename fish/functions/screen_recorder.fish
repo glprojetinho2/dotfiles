@@ -9,9 +9,9 @@ function screen_recorder
     end
 
     set -l filename "recording_$(date +%c | tr ' ' '_').mp4"
-    notify-send "Recording $filename"
 
     set video_path "$HOME/Vídeos/$filename"
-    wf-recorder -f $video_path --output $RECORD $argv
+    set audio_output (pactl list sources | grep Name | cut -d ':' -f2 | cut -d ' ' -f2 | grep output)[1]
+    wf-recorder -f $video_path --output $RECORD --audio=$audio_output $argv
     echo "file://$video_path" | wl-copy -t text/uri-list
 end

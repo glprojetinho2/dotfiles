@@ -6,6 +6,10 @@
 
 config_version: 2
 settings:
+  bindings.commands:
+    global:
+      normal:
+        <Alt+e>: edit-url
   editor.command:
     global:
     - alacritty
