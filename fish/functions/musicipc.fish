@@ -72,7 +72,13 @@ function musicipc -d "Control music playback externally"
 
             set nextnext (echo "$(relative_song $playlist $song_url '+2')\n")
             set previousprevious (echo "\n$(relative_song $playlist $song_url '-2')")
-            echo "{\"text\": \"[$( echo $song_title | string sub -l 21 )...] $minutes:$seconds\", \
+
+            set title_stop_at 40
+            set trimmed_song_title $song_title
+            if test (string length $song_title) -gt $title_stop_at
+                set trimmed_song_title "$(string sub -l 40 $song_title)..."
+            end
+            echo "{\"text\": \"[$trimmed_song_title] $minutes:$seconds\", \
             \"tooltip\": \"<tt>$nextnext$next<b>$song_title</b>$previous$previousprevious</tt>\"}"
     end
 end

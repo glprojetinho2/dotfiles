@@ -52,9 +52,6 @@ fetch_cfg starship/config.toml $HOME/.config/starship.toml
 # configura o fish
 fetch_cfg fish $HOME/.config/fish
 
-# configura o pipe-viewer
-fetch_cfg pipe-viewer/pipe-viewer.conf $HOME/.config/pipe-viewer/pipe-viewer.conf
-
 # configura o yazi (explorador de arquivos)
 fetch_cfg yazi $HOME/.config/yazi
 

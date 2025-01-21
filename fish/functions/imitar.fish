@@ -23,4 +23,5 @@ function imitar
     set -l resposta_raw $(echo "$definicao\n\n\nEXEMPLOS:\n\n$exemplos\n")
     set -l resposta $( echo "$resposta_raw\n"| aha)
     echo $resposta | wl-copy -t text/html
+    echo $resposta_raw
 end

@@ -3,7 +3,7 @@ if status is-interactive
 end
 set -gx EDITOR helix
 set -gx VISUAL helix
-set -gx MANPAGER bat
+set -gx MANPAGER "bat -l man"
 set -gx BAT_THEME gruvbox-light
 set fish_greeting
 set -gx fish_key_bindings fish_vi_key_bindings

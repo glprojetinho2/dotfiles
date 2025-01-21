@@ -1,9 +1,9 @@
-function youtube_music_wofi -d "Search youtube using wofi. Audio version."
-    pkill wofi
+function youtube_music_menu -d "Search youtube using a floating menu. Audio version."
+    pkill rofi
 
     # Default config directory
-    set configdir "$HOME/.config/youtube_wofi"
-    not test -z $XDG_CONFIG_HOME; and set configdir "$XDG_CONFIG_HOME/.config/youtube_wofi"
+    set configdir "$HOME/.config/youtube_menu"
+    not test -z $XDG_CONFIG_HOME; and set configdir "$XDG_CONFIG_HOME/.config/youtube_rofi"
     set histfile $configdir/history
 
     if not test -d "$configdir"
@@ -12,14 +12,14 @@ function youtube_music_wofi -d "Search youtube using wofi. Audio version."
     end
 
     tac $histfile
-    set video_query (tac $histfile | sed '/^$/d' | wofi --dmenu -p "Search query: ")
+    set video_query (tac $histfile | sed '/^$/d' | rofi -dmenu -i -p "Search query: ")
     if test -z $video_query
         echo "no input."
         return 1
     end
 
 
-    set raw_video_list ( pyt --no-interactive $video_query --custom-layout="[[video]]\ntitle = '''*TITLE*'''\nurl = '''*URL*'''" | sed -e "s/\"/'/g" -e "/^\$/d" -e 's/\x1b\[[0-9;]*m//g')
+    set raw_video_list ( pipe-viewer --no-interactive $video_query --custom-layout="[[video]]\ntitle = '''*TITLE*'''\nurl = '''*URL*'''" | sed -e "s/\"/'/g" -e "/^\$/d" -e 's/\x1b\[[0-9;]*m//g')
     set video_list (string join \n $raw_video_list | tomlq '.video')
     string join \n $video_list >/tmp/playlist.json
 

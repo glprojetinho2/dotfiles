@@ -18,8 +18,8 @@ hide_edge_borders none
 
 # change borders
 bindsym $mod+u border none
-bindsym $mod+y exec fish -c "youtube_wofi"
-bindsym $mod+Shift+y exec fish -c "youtube_music_wofi"
+bindsym $mod+y exec fish -c "youtube_menu"
+bindsym $mod+Shift+y exec fish -c "youtube_music_menu"
 bindsym $mod+n border normal
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -36,7 +36,7 @@ bindsym $mod+Return exec alacritty -e fish
 bindsym $mod+Shift+c kill
 
 # start program launcher
-bindsym $mod+p exec --no-startup-id wofi --show drun
+bindsym $mod+p exec --no-startup-id rofi -show drun
 
 ################################################################################################
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
@@ -63,6 +63,8 @@ bindsym $mod+F6 exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym $mod+F7 exec fish -c "musicipc toggleplay"
 bindsym $mod+F8 exec fish -c "musicipc minusminute"
 bindsym $mod+F9 exec fish -c "musicipc plusminute"
+bindsym $mod+F11 exec fish -c "musicipc prev"
+bindsym $mod+F12 exec fish -c "musicipc next"
 bindsym $mod+t exec --no-startup-id pkill picom
 bindsym $mod+Ctrl+t exec --no-startup-id picom -b
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
@@ -103,8 +105,8 @@ bindsym $mod+b workspace back_and_forth
 bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
 # split orientation
-bindsym $mod+i split h;exec notify-send 'tile horizontally'
-bindsym $mod+v split v;exec notify-send 'tile vertically'
+bindsym $mod+i split h
+bindsym $mod+v split v
 bindsym $mod+q split toggle
 
 # toggle fullscreen mode for the focused container
