@@ -10,7 +10,7 @@ set $mod Mod4
 # workspace_layout tabbed <stacking|tabbed>
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-default_border pixel 3
+default_border pixel 1
 default_floating_border pixel 1
 
 # Hide borders
@@ -332,11 +332,11 @@ bindsym $mod+m bar mode toggle
 
 # Theme colors
 # class                   border  backgr. text    indic.   child_border
-  client.focused          #505050 #505050 #ffffff #000000
-  client.focused_inactive #303030 #303030 #ffffff #000000
-  client.unfocused        #000000 #000000 #ffffff #000000
-  client.urgent           #707070 #707070 #ffffff #000000
-  client.placeholder      #909090 #909090 #ffffff #000000 
+  client.focused          #505050 #ffffff #ffffff #000000
+  client.focused_inactive #303030 #ffffff #ffffff #000000
+  client.unfocused        #000000 #ffffff #ffffff #000000
+  client.urgent           #707070 #ffffff #ffffff #000000
+  client.placeholder      #909090 #ffffff #ffffff #000000 
 
   client.background       #2B2C2B
 
@@ -397,7 +397,17 @@ mode "$mode_gaps_outer" {
         bindsym Escape mode "default"
 }
 
-exec "python $HOME/.sway/scripts/inactive.py"
+#SWAYFX
+blur enable
+blur_radius 10
+corner_radius 8
+
+shadows enable
+shadows_on_csd enable
+shadow_blur_radius 12
+shadow_color #FFFFFFFF
+
+exec_always "python $HOME/.sway/scripts/inactive.py"
 
 # startup applications
 exec --no-startup-id dunst
