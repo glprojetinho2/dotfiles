@@ -1,6 +1,7 @@
 function youtube_menu -d "Search youtube using a floating menu."
     pkill rofi
 
+
     # Default config directory
     set configdir "$HOME/.config/youtube_menu"
     not test -z $XDG_CONFIG_HOME; and set configdir "$XDG_CONFIG_HOME/.config/youtube_menu"
@@ -11,12 +12,17 @@ function youtube_menu -d "Search youtube using a floating menu."
         mkdir -p "$configdir"
     end
 
-    set video_query (tac $histfile | sed '/^$/d' | rofi -dmenu -i -p "Search query: ")
+    set clipb (wl-paste)
+    if string match -r 'youtube\.com|youtu\.be' $clipb
+        set copied_youtube_link $clipb
+    end
+    set suggestions (echo -e "$copied_youtube_link\n$(tac $histfile)")
+    set video_query ( string join \n $suggestions | sed '/^$/d' | rofi -dmenu -i -p "Search query: ")
     if test -z $video_query
         echo "no input."
         return 1
     end
-    set video_list (pipe-viewer --no-interactive --custom-layout="*NO*. *TITLE* *AUTHOR* *AGE_SHORT* *VIEWS_SHORT* *TIME* *ID*" $video_query | sed -e 's/\x1b\[[0-9;]*m//g' -e 's/^ \+//g' -e '/^$/d')
+    set video_list (pipe-viewer --append-args="--cache=no --input-ipc-server=/tmp/mpvvideosocket " --no-interactive --custom-layout="*NO*. *TITLE* *AUTHOR* *AGE_SHORT* *VIEWS_SHORT* *TIME* *ID*" $video_query | sed -e 's/\x1b\[[0-9;]*m//g' -e 's/^ \+//g' -e '/^$/d')
     if string match -r '^https?://' $video_query
         # a single link already spawns a video,
         # so we just exit.
@@ -32,5 +38,7 @@ function youtube_menu -d "Search youtube using a floating menu."
     echo $video_query >>$histfile
 
     echo "video id: $video_id"
-    mpv --cache=no --input-ipc-server=/tmp/mpvvideosocket "https://www.youtube.com/watch/?v=$video_id" $argv
+    set yt_link "https://www.youtube.com/watch?v=$video_id"
+    echo $yt_link >/tmp/youtube_menu_link
+    mpv --cache=no --input-ipc-server=/tmp/mpvvideosocket $yt_link $argv
 end

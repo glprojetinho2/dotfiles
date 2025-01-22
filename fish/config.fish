@@ -11,6 +11,7 @@ bind -M insert \cf accept-autosuggestion
 bind -M insert \cn history-search-forward
 bind -M insert \cp history-search-backward
 bind -M insert \ct fish_tldr_binding
+bind -M insert \ch fish_help_binding
 bind -- !! 'commandline -i "( $history[1] )"'
 
 starship init fish | source

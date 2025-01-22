@@ -1,5 +1,5 @@
 [general]
-import = [ "~/.config/alacritty/colors.toml",]
+import = [ "~/.config/alacritty/light-theme.toml",]
 
 [font]
 size = 8
@@ -25,3 +25,4 @@ style = "Italic"
 [font.normal]
 family = "0xProto Nerd Font"
 style = "Regular"
+
