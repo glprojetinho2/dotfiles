@@ -18,22 +18,18 @@
 		"clock",
 		"tray"
 	],
-	// Modules configuration
-	// "sway/workspaces": {
-	//     "disable-scroll": true,
-	//     "all-outputs": true,
-	//     "format": "{name}: {icon}",
-	//     "format-icons": {
-	//         "1": "",
-	//         "2": "",
-	//         "3": "",
-	//         "4": "",
-	//         "5": "",
-	//         "urgent": "",
-	//         "focused": "",
-	//         "default": ""
-	//     }
-	// },
+	"sway/workspaces": {
+	    "disable-scroll": true,
+	    "persistent-workspaces": {
+	    	"1": [],
+	    	"2": [],
+	    	"3": [],
+	    	"4": [],
+	    	"5": [],
+	    	"6": [],
+	    },
+	    "format": "{name}"
+	},
 	"sway/mode": {
 		"format": "<span style=\"italic\">{}</span>"
 	},
@@ -149,5 +145,5 @@
      "on-click": "fish -c 'musicipc toggleplay'",
      "on-scroll-up": "fish -c 'musicipc next'",
      "on-scroll-down": "fish -c 'musicipc prev'",
- }
+ },
 }
