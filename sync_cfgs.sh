@@ -52,8 +52,14 @@ fetch_cfg starship/config.toml $HOME/.config/starship.toml
 # configura o fish
 fetch_cfg fish $HOME/.config/fish
 
+# ricezinho no rofi
+fetch_cfg rofi $HOME/.config/rofi
+
 # configura o yazi (explorador de arquivos)
 fetch_cfg yazi $HOME/.config/yazi
+
+# deixa o fastfetch mais bonito
+fetch_cfg fastfetch $HOME/.config/fastfetch
 
 # configura o qutebrowser
 fetch_cfg qutebrowser $HOME/.config/qutebrowser 

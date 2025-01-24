@@ -12,6 +12,11 @@ from functools import partial
 
 import i3ipc
 
+special_apps = {
+    "anki": {
+        "focused": 0.75
+    }
+}
 
 def on_window_focus(args, ipc, event):
     global prev_focused
@@ -26,7 +31,11 @@ def on_window_focus(args, ipc, event):
     workspace = focused_workspace.workspace().num
 
     if focused.id != prev_focused.id:  # https://github.com/swaywm/sway/issues/2859
-        focused.command("opacity " + args.focused)
+        if focused.app_id not in special_apps.keys():
+            focused.command("opacity " + args.focused)
+        else:
+            opacity = special_apps[focused.app_id]["focused"]
+            focused.command("opacity " + str(opacity))
         prev_focused.command("opacity " + args.opacity)
         prev_focused = focused
         prev_workspace = workspace
