@@ -72,4 +72,6 @@ fetch_cfg qutebrowser-for-shitty-websites $HOME/.config/qutebrowser-for-shitty-w
 if [ ! -z $1 ]; then
 	# configura aplicações
 	sudo ln -srf applications/*.desktop /usr/share/applications/
+	xdg-icon-resource install --size 128 ./applications/*.png
+	xdg-icon-resource install --size 128 ./applications/*.jpg
 fi

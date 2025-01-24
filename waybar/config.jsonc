@@ -128,15 +128,6 @@
 		"format-source-muted": "",
 		"on-click": "pavucontrol"
 	},
-	 "custom/pomodoro": {
-    "exec": "fish -c sway_pomodoro",
-     "return-type": "json",
-     "interval": 1,
-     "format": "{}",
-     "on-click": "fish -c pomodoro_toggle",
-     "on-click-middle": "i3-gnome-pomodoro stop",
-     "on-click-right": "i3-gnome-pomodoro start",
- },
  "custom/mpvmusic": {
 	 	 "exec": "fish -c 'musicipc status'",
      "return-type": "json",
@@ -146,4 +137,11 @@
      "on-scroll-up": "fish -c 'musicipc next'",
      "on-scroll-down": "fish -c 'musicipc prev'",
  },
+ "custom/pomodoro": {
+	"format": "{}",
+	"return-type": "json",
+	"exec": "waybar-module-pomodoro -w 1 --autow --autob",
+	"on-click": "waybar-module-pomodoro -w 1 --autow --autob toggle",
+	"on-click-right": "waybar-module-pomodoro -w 1 --autow --autob reset",
+},
 }
