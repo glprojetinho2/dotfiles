@@ -12,7 +12,7 @@ function youtube_music_menu -d "Search youtube using a floating menu. Audio vers
     end
 
     tac $histfile
-    set video_query (tac $histfile | sed '/^$/d' | rofi -dmenu -i -p "Search query: ")
+    set video_query (tac $histfile | sed '/^$/d' | rofi -dmenu -i -p "Search query")
     if test -z $video_query
         echo "no input."
         return 1

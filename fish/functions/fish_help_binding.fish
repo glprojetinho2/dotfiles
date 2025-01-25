@@ -25,9 +25,9 @@ function fish_help_binding
     # See #7863.
     set cmds
     if set -q args[2]
-        set -a cmds "$maincmd $args[2] -h" "$maincmd $args[2] --help" "$maincmd $args[2] help"
+        set -a cmds "$maincmd $args[2] -help" "$maincmd $args[2] -h" "$maincmd $args[2] --help" "$maincmd $args[2] help"
     end
-    set -a cmds "$maincmd -h" "$maincmd --help" "$maincmd help"
+    set -a cmds "$maincmd -help" "$maincmd -h" "$maincmd --help" "$maincmd help"
     for help_command in $cmds
         if eval $help_command | cat &>/dev/null
             eval $help_command | bat

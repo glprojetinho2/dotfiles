@@ -17,7 +17,7 @@ function youtube_menu -d "Search youtube using a floating menu."
         set copied_youtube_link $clipb
     end
     set suggestions (echo -e "$copied_youtube_link\n$(tac $histfile)")
-    set video_query ( string join \n $suggestions | sed '/^$/d' | rofi -dmenu -i -p "Search query: ")
+    set video_query ( string join \n $suggestions | sed '/^$/d' | rofi -dmenu -i -p "Search query")
     if test -z $video_query
         echo "no input."
         return 1
@@ -29,7 +29,7 @@ function youtube_menu -d "Search youtube using a floating menu."
         return 0
     end
 
-    set video_id ( string join \n $video_list | rofi -dmenu -i -l 20 -p "Choose an youtube video: " | tr ' ' '\n')[-1]
+    set video_id ( string join \n $video_list | rofi -dmenu -i -l 20 -p "Choose an youtube video" | tr ' ' '\n')[-1]
     if test -z $video_id
         echo "no video selected."
         return 1

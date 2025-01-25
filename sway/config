@@ -416,4 +416,4 @@ exec --no-startup-id anki
 exec --no-startup-id "gnome-pomodoro --no-default-window"
 exec --no-startup-id calibre
 exec --no-startup-id syncthing
-exec "alacritty -e helix ~/todo.txt & disown && sleep 1 && swaymsg 'move scratchpad' && swaymsg 'scratchpad show'"
+exec "alacritty -e helix ~/Anotações/todo.txt & disown && sleep 1 && swaymsg 'move scratchpad' && swaymsg 'scratchpad show'"
