@@ -52,8 +52,14 @@ fetch_cfg starship/config.toml $HOME/.config/starship.toml
 # configura o fish
 fetch_cfg fish $HOME/.config/fish
 
+# ricezinho no rofi
+fetch_cfg rofi $HOME/.config/rofi
+
 # configura o yazi (explorador de arquivos)
 fetch_cfg yazi $HOME/.config/yazi
+
+# deixa o fastfetch mais bonito
+fetch_cfg fastfetch $HOME/.config/fastfetch
 
 # configura o qutebrowser
 fetch_cfg qutebrowser $HOME/.config/qutebrowser 
@@ -66,4 +72,6 @@ fetch_cfg qutebrowser-for-shitty-websites $HOME/.config/qutebrowser-for-shitty-w
 if [ ! -z $1 ]; then
 	# configura aplicações
 	sudo ln -srf applications/*.desktop /usr/share/applications/
+	xdg-icon-resource install --size 128 ./applications/*.png
+	xdg-icon-resource install --size 128 ./applications/*.jpg
 fi

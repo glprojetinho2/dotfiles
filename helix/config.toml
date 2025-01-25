@@ -2,6 +2,7 @@ theme = "gruvbox_light"
 
 [editor]
 mouse = false
+shell = ["fish", "-c"]
 
 [editor.cursor-shape]
 insert = "bar"
@@ -14,13 +15,17 @@ hidden = false
 [editor.soft-wrap]
 enable = true
 
+[keys.insert]
+"C-d"=":insert-output LC_TIME=en_US date -u '+%b %d %Y'"
+
+
 [keys.normal]
 "C-S-t" = ":sh alacritty --working-directory ."
 "C-h"=["jump_view_left"]
 "C-l"=["jump_view_right"]
 "C-j"=["jump_view_down"]
 "C-k"=["jump_view_up"]
-"space" = { q = ":bc" }
+"space" = { q = ":bc", ";" = ":config-open" }
 "tab" = ":buffer-next"
 "S-tab" = ":buffer-previous"
 "C-y" = ":w"

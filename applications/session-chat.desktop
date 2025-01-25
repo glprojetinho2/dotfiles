@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Session
+Icon=session-chat
+Comment=Secure chatting
+Exec=session-chat

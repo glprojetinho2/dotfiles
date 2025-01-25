@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=Showkeys
+GenericName=Shows keypresses
+Exec=wshowkeys -a bottom -b#000000 -s#00FFFF -f#FFFFFF
