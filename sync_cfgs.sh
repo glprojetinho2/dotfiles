@@ -33,6 +33,9 @@ fetch_cfg alacritty $HOME/.config/alacritty
 fetch_cfg waybar/config.jsonc $HOME/.config/waybar/config
 fetch_cfg waybar/style.css $HOME/.config/waybar/style.css
 
+# configura as aplicações-padrão
+fetch_cfg mimeapps.list ~/.config/mimeapps.list
+
 # configura a lock screen
 fetch_cfg swaylock/config.idle $HOME/.config/swaylock/config.idle
 fetch_cfg lock.png $HOME/lock.png

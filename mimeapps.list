@@ -1,0 +1,42 @@
+[Default Applications]
+x-scheme-handler/http=org.qutebrowser.qutebrowser.desktop
+x-scheme-handler/https=org.qutebrowser.qutebrowser.desktop
+x-scheme-handler/ftp=userapp-Pale Moon.desktop
+x-scheme-handler/chrome=org.qutebrowser.qutebrowser.desktop
+text/html=org.qutebrowser.qutebrowser.desktop
+application/x-extension-htm=org.qutebrowser.qutebrowser.desktop
+application/x-extension-html=org.qutebrowser.qutebrowser.desktop
+application/x-extension-shtml=org.qutebrowser.qutebrowser.desktop
+application/xhtml+xml=org.qutebrowser.qutebrowser.desktop
+application/x-extension-xhtml=org.qutebrowser.qutebrowser.desktop
+application/x-extension-xht=org.qutebrowser.qutebrowser.desktop
+image/jpeg=viewnior.desktop;gpicview.desktop;
+image/png=oculante.desktop
+text/plain=helix.desktop
+application/pdf=org.pwmt.zathura.desktop
+application/x-bittorrent=deluge.desktop
+inode/directory=yazi.desktop
+application/x-gnome-saved-search=yazi.desktop
+x-scheme-handler/about=org.qutebrowser.qutebrowser.desktop
+x-scheme-handler/unknown=org.qutebrowser.qutebrowser.desktop
+image/jpg=oculante.desktop
+
+[Added Associations]
+x-scheme-handler/http=userapp-Pale Moon.desktop;librewolf.desktop;
+x-scheme-handler/https=userapp-Pale Moon.desktop;librewolf.desktop;
+x-scheme-handler/ftp=userapp-Pale Moon.desktop;
+x-scheme-handler/chrome=userapp-Pale Moon.desktop;librewolf.desktop;
+text/html=userapp-Pale Moon.desktop;librewolf.desktop;
+application/x-extension-htm=userapp-Pale Moon.desktop;librewolf.desktop;
+application/x-extension-html=userapp-Pale Moon.desktop;librewolf.desktop;
+application/x-extension-shtml=userapp-Pale Moon.desktop;librewolf.desktop;
+application/xhtml+xml=userapp-Pale Moon.desktop;librewolf.desktop;
+application/x-extension-xhtml=userapp-Pale Moon.desktop;librewolf.desktop;
+application/x-extension-xht=userapp-Pale Moon.desktop;librewolf.desktop;
+image/jpeg=viewnior.desktop;gpicview.desktop;
+image/png=viewnior.desktop;gpicview.desktop;
+text/plain=mousepad.desktop;
+x-scheme-handler/mailto=userapp-Thunderbird.desktop;
+message/rfc822=userapp-Thunderbird.desktop;
+application/pdf=mupdf.desktop;
+application/x-bittorrent=deluge.desktop;

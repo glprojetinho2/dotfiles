@@ -22,14 +22,17 @@ function youtube_menu -d "Search youtube using a floating menu."
         echo "no input."
         return 1
     end
-    set video_list (pipe-viewer --append-args="--input-ipc-server=/tmp/mpvvideosocket" --no-interactive --custom-layout="*NO*. *TITLE* *AUTHOR* *AGE_SHORT* *VIEWS_SHORT* *TIME* *ID*" $video_query | sed -e 's/\x1b\[[0-9;]*m//g' -e 's/^ \+//g' -e '/^$/d')
+    set video_list_with_id (pipe-viewer  --append-args="--input-ipc-server=/tmp/mpvvideosocket" --no-interactive --custom-layout="*NO*. *TITLE* [[*AUTHOR*]] *AGE_SHORT* *VIEWS_SHORT* *TIME* ||| *ID*" $video_query | sed -e 's/\x1b\[[0-9;]*m//g' -e 's/^ \+//g' -e '/^$/d')
+    set video_list (string join \n $video_list_with_id | sed 's/ ||| .*//g')
+    string join \n $video_list >/tmp/vdlist
     if string match -r '^https?://' $video_query
         # a single link already spawns a video,
         # so we just exit.
         return 0
     end
 
-    set video_id ( string join \n $video_list | rofi -dmenu -i -l 20 -p "Choose an youtube video" | tr ' ' '\n')[-1]
+    set video_number ( string join \n $video_list | rofi -dmenu -i -l 20 -p "Choose an youtube video" | cut -d . -f1 )
+    set video_id (string join \n $video_list_with_id | grep "^$video_number." | sed 's/.\+ ||| //g')
     if test -z $video_id
         echo "no video selected."
         return 1

@@ -35,7 +35,7 @@ cd /tmp/prog
 paru --version
 or eval "git clone https://aur.archlinux.org/paru.git && cd paru && makepkg -si"
 
-set deleted rofi swayfx manjaro-i3-settings morc_menu dmenu-manjaro swaylock yazi-git swaylock-effects-git
+set deleted manjaro-ranger-settings rofi swayfx manjaro-i3-settings morc_menu dmenu-manjaro swaylock yazi-git swaylock-effects-git
 for package in $deleted
     if not sudo pacman --noconfirm -Rs $package
         echo "falha ao desinstalar $package com o pacman"
@@ -50,12 +50,13 @@ if not paru -S --needed --noconfirm \
         swaybg imv alacritty lldb rustup \
         pipewire pipewire-pulse pwvucontrol lazygit \
         tealdeer kdotool yazi bat polkit \
-        multibg-sway waybar sway \
+        multibg-sway waybar sway zathura \
         jq yq wl-clipboard swaylock grim slurp \
         zoxide fish fisher qutebrowser \
-        calibre helix starship \
+        calibre helix starship ueberzugpp \
         glow pup-bin aha fastfetch jqp-bin \
-        zenith qt5-wayland umpv urlview arti
+        zenith qt5-wayland umpv urlview arti \
+        zathura-pdf-poppler keepassxc
     echo "falha ao instalar pacotes"
     return 1
 end

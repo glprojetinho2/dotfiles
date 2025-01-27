@@ -16,7 +16,8 @@ hidden = false
 enable = true
 
 [keys.insert]
-"C-d"=":insert-output LC_TIME=en_US date -u '+%b %d %Y'"
+"C-S-d"=":insert-output LC_TIME=en_US date '+%b %d %Y'"
+"C-d"=":insert-output date '+%H:%M'"
 
 
 [keys.normal]
