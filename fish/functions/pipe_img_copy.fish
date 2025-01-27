@@ -1,5 +1,5 @@
 function pipe_img_copy
-while read -l line
-wl-copy < $line 
-end
+    while read -l line
+        wl-copy <$line
+    end
 end

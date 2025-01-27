@@ -140,8 +140,8 @@
  "custom/pomodoro": {
 	"format": "{}",
 	"return-type": "json",
-	"exec": "waybar-module-pomodoro -w 1 --autow --autob",
-	"on-click": "waybar-module-pomodoro -w 1 --autow --autob toggle",
-	"on-click-right": "waybar-module-pomodoro -w 1 --autow --autob reset",
+	"exec": "fish -c 'waybar-module-pomodoro -w $POMODORO_WORK -s $POMODORO_BREAK -l $POMODORO_LONG_BREAK --autow --autob'",
+	"on-click": "fish -c 'waybar-module-pomodoro -w $POMODORO_WORK -s $POMODORO_BREAK -l $POMODORO_LONG_BREAK --autow --autob toggle'",
+	"on-click-right": "fish -c 'waybar-module-pomodoro -w $POMODORO_WORK -s $POMODORO_BREAK -l $POMODORO_LONG_BREAK --autow --autob reset'",
 },
 }

@@ -67,6 +67,7 @@ bindsym $mod+F12 exec fish -c "musicipc next"
 bindsym $mod+t exec --no-startup-id pkill picom
 bindsym $mod+Ctrl+t exec --no-startup-id picom -b
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
+bindsym $mod+Shift+w exec archwiki-offline
 bindsym Print exec --no-startup-id grim - | wl-copy -t 'image/png'
 bindsym $mod+Print exec --no-startup-id grim -g "$(slurp -d)" - | wl-copy -t 'image/png'
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
@@ -194,7 +195,6 @@ bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 
 # Open applications on specific workspaces
-assign [app_id="org.qutebrowser.qutebrowser"] $ws1
 assign [app_id="anki"] $ws2
 for_window [app_id="anki"] opacity 0.65
 assign [app_id="gnome-pomodoro"] $ws2
@@ -405,27 +405,14 @@ mode "$mode_gaps_outer" {
         bindsym Escape mode "default"
 }
 
-#SWAYFX
-blur enable
-blur_radius 4
-blur_passes 3
-corner_radius 8
-default_dim_inactive 0.2
-
-shadows enable
-shadows_on_csd enable
-shadow_blur_radius 16
-shadow_color #FFFFFFFF
-
-layer_effects "rofi" blur enable; blur_ignore_transparent enable; blur_brightness 0.75; corner_radius 6; opacity 0.7
-
 exec "python $HOME/.sway/scripts/inactive.py"
 
 # startup applications
 exec --no-startup-id dunst
-exec --no-startup-id okular
+exec --no-startup-id keepassxc
+exec --no-startup-id zathura
 exec --no-startup-id anki
-exec --no-startup-id "gnome-pomodoro --no-default-window"
 exec --no-startup-id calibre
 exec --no-startup-id syncthing
-exec "alacritty -e helix ~/Anotações/todo.txt & disown && sleep 1 && swaymsg 'move scratchpad' && swaymsg 'scratchpad show'"
+exec --no-startup-id "arti proxy"
+exec "alacritty -o 'font.size=16' -e helix -w ~/Anotações ~/Anotações/todo.txt & disown; sleep 1 && swaymsg 'move scratchpad' && swaymsg 'scratchpad show'"

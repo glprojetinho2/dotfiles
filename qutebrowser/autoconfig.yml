@@ -6,11 +6,17 @@
 
 config_version: 2
 settings:
+  bindings.commands:
+    global:
+      normal:
+        ',M': hint links spawn umpv {hint-url}
+        ',m': spawn umpv {url}
+        ;M: hint --rapid links spawn umpv {hint-url}
   content.javascript.enabled:
     '*://web.whatsapp.com/*': true
-    global: true
+    global: false
   content.proxy:
-    global: socks://localhost:9050/
+    global: socks://localhost:9150
   editor.command:
     global:
     - alacritty
@@ -43,6 +49,8 @@ settings:
     - -c
     - y
     - --choosefile={}
+  tabs.position:
+    global: top
   url.default_page:
     global: http://4getwebfrq5zr4sxugk6htxvawqehxtdgjrbcn2oslllcol2vepa23yd.onion
   url.searchengines:

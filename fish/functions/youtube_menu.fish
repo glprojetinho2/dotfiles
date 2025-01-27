@@ -22,7 +22,7 @@ function youtube_menu -d "Search youtube using a floating menu."
         echo "no input."
         return 1
     end
-    set video_list (pipe-viewer --append-args="--cache=no --input-ipc-server=/tmp/mpvvideosocket " --no-interactive --custom-layout="*NO*. *TITLE* *AUTHOR* *AGE_SHORT* *VIEWS_SHORT* *TIME* *ID*" $video_query | sed -e 's/\x1b\[[0-9;]*m//g' -e 's/^ \+//g' -e '/^$/d')
+    set video_list (pipe-viewer --append-args="--input-ipc-server=/tmp/mpvvideosocket" --no-interactive --custom-layout="*NO*. *TITLE* *AUTHOR* *AGE_SHORT* *VIEWS_SHORT* *TIME* *ID*" $video_query | sed -e 's/\x1b\[[0-9;]*m//g' -e 's/^ \+//g' -e '/^$/d')
     if string match -r '^https?://' $video_query
         # a single link already spawns a video,
         # so we just exit.
@@ -40,5 +40,5 @@ function youtube_menu -d "Search youtube using a floating menu."
     echo "video id: $video_id"
     set yt_link "https://www.youtube.com/watch?v=$video_id"
     echo $yt_link >/tmp/youtube_menu_link
-    mpv --cache=no --input-ipc-server=/tmp/mpvvideosocket $yt_link $argv
+    mpv --input-ipc-server=/tmp/mpvvideosocket $yt_link $argv
 end

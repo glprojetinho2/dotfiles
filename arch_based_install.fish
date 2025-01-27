@@ -35,27 +35,27 @@ cd /tmp/prog
 paru --version
 or eval "git clone https://aur.archlinux.org/paru.git && cd paru && makepkg -si"
 
-set deleted sway manjaro-i3-settings morc_menu dmenu-manjaro swaylock yazi-git
+set deleted rofi swayfx manjaro-i3-settings morc_menu dmenu-manjaro swaylock yazi-git swaylock-effects-git
 for package in $deleted
-    if not sudo pacman -Rs $package
+    if not sudo pacman --noconfirm -Rs $package
         echo "falha ao desinstalar $package com o pacman"
     end
 end
 
 # alguns programas essenciais
 if not paru -S --needed --noconfirm \
-        wikiman archwiki-offline socat yq wf-recorder \
-        rofi python-pip python python-pipx \
+        wikiman archwiki-offline socat wf-recorder \
+        rofi-wayland python-pip python python-pipx \
         python-i3ipc anki-bin syncthing ripgrep \
         swaybg imv alacritty lldb rustup \
-        git-credential-oauth pipewire pipewire-pulse \
-        pwvucontrol lazygit tealdeer kdotool \
-        yazi bat polkit multibg-sway waybar swayfx \
-        jq wl-clipboard swaylock-effects-git grim slurp \
-        zoxide fish fisher torbrowser-launcher \
-        tor qutebrowser calibre helix starship \
-        glow links pup-bin aha fastfetch jqp-bin \
-        zenith
+        pipewire pipewire-pulse pwvucontrol lazygit \
+        tealdeer kdotool yazi bat polkit \
+        multibg-sway waybar sway \
+        jq yq wl-clipboard swaylock grim slurp \
+        zoxide fish fisher qutebrowser \
+        calibre helix starship \
+        glow pup-bin aha fastfetch jqp-bin \
+        zenith qt5-wayland umpv urlview arti
     echo "falha ao instalar pacotes"
     return 1
 end

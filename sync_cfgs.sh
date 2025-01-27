@@ -52,6 +52,9 @@ fetch_cfg starship/config.toml $HOME/.config/starship.toml
 # configura o fish
 fetch_cfg fish $HOME/.config/fish
 
+# configura o fish
+fetch_cfg mpv $HOME/.config/mpv
+
 # ricezinho no rofi
 fetch_cfg rofi $HOME/.config/rofi
 
@@ -68,6 +71,9 @@ xdg-settings set default-web-browser org.qutebrowser.qutebrowser.desktop
 fetch_cfg qutebrowser/quickmarks qutebrowser-for-shitty-websites/quickmarks
 fetch_cfg qutebrowser/bookmarks qutebrowser-for-shitty-websites/bookmarks
 fetch_cfg qutebrowser-for-shitty-websites $HOME/.config/qutebrowser-for-shitty-websites/config
+
+# configura os executáveis
+ln -srf bin/* $HOME/.local/bin/
 
 if [ ! -z $1 ]; then
 	# configura aplicações
