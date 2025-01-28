@@ -73,6 +73,8 @@ settings:
       ana: https://annas-archive.org/search?index=&page=1&q={}
       arc: https://archive.org/search?query={}
       en: https://dictionary.cambridge.org/dictionary/english/{}
+      g: https://4get.ca/web?s={}&focus=any&lang=any&country=any&region=any&domain=1
+      m: https://www.mojeek.com/search?q={}
       parc: https://archive.org/search?query={}&sort=date&and%5B%5D=language%3A%22Portuguese%22&and%5B%5D=year%3A%5B0+TO+1954%5D
       port: https://archive.org/search?query={}&sin=TXT&sort=date&and%5B%5D=language%3A%22Portuguese%22&and%5B%5D=year%3A%5B0+TO+1954%5D
       txt: https://archive.org/search?query={}&sin=TXT

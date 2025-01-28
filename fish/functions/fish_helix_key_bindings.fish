@@ -105,12 +105,12 @@ function fish_helix_key_bindings --description 'helix-like key bindings for fish
     # Motion and actions in normal/select mode
     for mode in default visual
         if test $mode = default
-            set -f n_begin_selection "begin-selection" # only begin-selection if current mode is Normal
-            set -f ns_move_extend "move"
+            set -f n_begin_selection begin-selection # only begin-selection if current mode is Normal
+            set -f ns_move_extend move
             set -f commandline_v_repaint ""
         else
             set -f n_begin_selection
-            set -f ns_move_extend "extend"
+            set -f ns_move_extend extend
             set -f commandline_v_repaint "commandline -f repaint-mode"
         end
 
@@ -119,16 +119,16 @@ function fish_helix_key_bindings --description 'helix-like key bindings for fish
             # FIXME example to bind 0
             # FIXME backspace to edit count
         end
-        for key in h \e\[D \eOD "-k left"
+        for key in h \e\[D \eOD
             bind -s --preset -M $mode $key "fish_helix_command "$ns_move_extend"_char_left"
         end
-        for key in l \e\[C \eOC "-k right"
+        for key in l \e\[C \eOC
             bind -s --preset -M $mode $key "fish_helix_command "$ns_move_extend"_char_right"
         end
-        for key in k \e\[A \eOA "-k up"
+        for key in k \e\[A \eOA
             bind -s --preset -M $mode $key "fish_helix_command char_up"
         end
-        for key in j \e\[B \eOB "-k down"
+        for key in j \e\[B \eOB
             bind -s --preset -M $mode $key "fish_helix_command char_down"
         end
 
@@ -156,10 +156,10 @@ function fish_helix_key_bindings --description 'helix-like key bindings for fish
             bind -s --preset -M $mode F$enter "fish_helix_command find_prev_cr"
         end
 
-        for key in gh \e\[H \eOH "-k home"
+        for key in gh \e\[H \eOH
             bind -s --preset -M $mode $key "fish_helix_command goto_line_start"
         end
-        for key in gl \e\[F \eOF "-k end"
+        for key in gl \e\[F \eOF
             bind -s --preset -M $mode $key "fish_helix_command goto_line_end"
         end
         bind -s --preset -M $mode gs "fish_helix_command goto_first_nonwhitespace"
@@ -260,13 +260,13 @@ function fish_helix_key_bindings --description 'helix-like key bindings for fish
     bind -s --preset -M default -k sdc backward-delete-char # shifted delete
 
 
-#    bind -s --preset '~' togglecase-char forward-single-char
-#    bind -s --preset gu downcase-word
-#    bind -s --preset gU upcase-word
-#
-#    bind -s --preset J end-of-line delete-char
-#    bind -s --preset K 'man (commandline -t) 2>/dev/null; or echo -n \a'
-#
+    #    bind -s --preset '~' togglecase-char forward-single-char
+    #    bind -s --preset gu downcase-word
+    #    bind -s --preset gU upcase-word
+    #
+    #    bind -s --preset J end-of-line delete-char
+    #    bind -s --preset K 'man (commandline -t) 2>/dev/null; or echo -n \a'
+    #
 
 
 

@@ -32,6 +32,9 @@ function youtube_menu -d "Search youtube using a floating menu."
     end
 
     set video_number ( string join \n $video_list | rofi -dmenu -i -l 20 -p "Choose an youtube video" | cut -d . -f1 )
+    if test -z $video_number
+        return 0
+    end
     set video_id (string join \n $video_list_with_id | grep "^$video_number." | sed 's/.\+ ||| //g')
     if test -z $video_id
         echo "no video selected."

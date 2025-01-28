@@ -1,6 +1,7 @@
 # input setup
 input * xkb_layout br
 input * xkb_numlock enabled
+set $shell fish -c
 
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod4
@@ -17,8 +18,8 @@ hide_edge_borders none
 
 # change borders
 bindsym $mod+u border none
-bindsym $mod+y exec fish -c "youtube_menu"
-bindsym $mod+Shift+y exec fish -c "youtube_music_menu"
+bindsym $mod+y exec $shell "youtube_menu"
+bindsym $mod+Shift+y exec $shell "youtube_music_menu"
 bindsym $mod+n border normal
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -55,24 +56,24 @@ bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 # Start Applications
 bindsym $mod+Ctrl+b exec alacritty -e fish -e 'bmenu'
 bindsym $mod+F2 exec qutebrowser
-bindsym $mod+F3 exec alacritty -e fish -c y
+bindsym $mod+F3 exec alacritty -e $shell y
 bindsym $mod+F4 exec anki
 bindsym $mod+F5 exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym $mod+F6 exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-bindsym $mod+F7 exec fish -c "musicipc toggleplay"
-bindsym $mod+F8 exec fish -c "musicipc minusminute"
-bindsym $mod+F9 exec fish -c "musicipc plusminute"
-bindsym $mod+F11 exec fish -c "musicipc prev"
-bindsym $mod+F12 exec fish -c "musicipc next"
+bindsym $mod+F7 exec $shell "musicipc toggleplay"
+bindsym $mod+F8 exec $shell "musicipc minusminute"
+bindsym $mod+F9 exec $shell "musicipc plusminute"
+bindsym $mod+F11 exec $shell "musicipc prev"
+bindsym $mod+F12 exec $shell "musicipc next"
 bindsym $mod+t exec --no-startup-id pkill picom
 bindsym $mod+Ctrl+t exec --no-startup-id picom -b
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
 bindsym $mod+Shift+w exec archwiki-offline
-bindsym Print exec --no-startup-id grim - | wl-copy -t 'image/png'
-bindsym $mod+Print exec --no-startup-id grim -g "$(slurp -d)" - | wl-copy -t 'image/png'
+bindsym Print exec --no-startup-id $shell "grim - > /tmp/print.png && cat /tmp/pring.png | wl-copy -t 'image/png'"
+bindsym $mod+Print exec --no-startup-id $shell "grim -g '$(slurp -d)' - > /tmp/print.png && cat /tmp/print.png | wl-copy -t 'image/png'" 
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
-bindsym $mod+z exec fish -c screen_recorder
-bindsym $mod+Shift+z exec fish -c "screen_recorder -g '$(slurp)'"
+bindsym $mod+z exec $shell screen_recorder
+bindsym $mod+Shift+z exec $shell "screen_recorder -g '$(slurp)'"
 
 # focus_follows_mouse no
 
