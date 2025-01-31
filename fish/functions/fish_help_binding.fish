@@ -30,7 +30,7 @@ function fish_help_binding
     set -a cmds "$maincmd -help" "$maincmd -h" "$maincmd --help" "$maincmd help"
     for help_command in $cmds
         if eval $help_command | cat &>/dev/null
-            eval $help_command | bat
+            eval $help_command | $MANPAGER
             break
         else
             printf \a

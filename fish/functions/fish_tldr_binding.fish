@@ -26,10 +26,10 @@ function fish_tldr_binding
     if set -q args[2]
         and not string match -q -- '*/*' $args[2]
         and tldr "$maincmd-$args[2]" &>/dev/null
-        tldr --color=always "$maincmd-$args[2]" | bat
+        tldr --color=always "$maincmd-$args[2]" | $MANPAGER
     else
         if tldr "$maincmd" &>/dev/null
-            tldr --color=always "$maincmd" | bat
+            tldr --color=always "$maincmd" | $MANPAGER
         else
             printf \a
         end

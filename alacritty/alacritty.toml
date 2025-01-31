@@ -1,5 +1,5 @@
 [general]
-import = [ "~/.config/alacritty/light-theme.toml",]
+import = [ "/home/fish/.config/alacritty/color.toml",]
 
 [font]
 size = 8

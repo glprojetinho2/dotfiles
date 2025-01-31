@@ -1,3 +1,12 @@
 [manager]
 sort_by = "modified"
 sort_reverse = true
+
+[opener]
+edit = [	
+  { run = '$EDITOR "$@"', block = true, for = "unix" },
+]
+open = [
+  { run = 'xdg-open "$@"', desc = "Open", orphan = true}
+]
+

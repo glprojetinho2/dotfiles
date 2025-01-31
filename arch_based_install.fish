@@ -49,7 +49,7 @@ if not paru -S --needed --noconfirm \
         python-i3ipc anki-bin syncthing ripgrep \
         swaybg imv alacritty lldb rustup \
         pipewire pipewire-pulse pwvucontrol lazygit \
-        tealdeer kdotool yazi bat polkit \
+        tealdeer kdotool yazi polkit \
         multibg-sway waybar sway zathura \
         jq yq wl-clipboard swaylock grim slurp \
         zoxide fish fisher qutebrowser \

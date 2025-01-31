@@ -1,0 +1,4 @@
+[Desktop Entry]
+Type=Application
+Name=Sankhyasul
+Exec=fish -c 'z sankhyasul && bash start.sh'

@@ -1,3 +1,4 @@
+include /etc/sway/config.d/*
 # input setup
 input * xkb_layout br
 input * xkb_numlock enabled
