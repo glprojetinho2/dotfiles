@@ -18,5 +18,5 @@ starship init fish | source
 zoxide init fish | source
 
 if test -z $WAYLAND_DISPLAY; and test -n $XDG_VTNR; and test $XDG_VTNR -eq 1
-    exec sway
+    exec river
 end

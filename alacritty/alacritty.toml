@@ -8,7 +8,7 @@ size = 8
 save_to_clipboard = true
 
 [terminal]
-shell = "/usr/bin/fish"
+shell = "/usr/bin/zsh"
 
 [font.bold]
 family = "0xProto Nerd Font"
