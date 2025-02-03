@@ -53,10 +53,11 @@ if not paru -S --needed --noconfirm \
         multibg-sway waybar sway zathura \
         jq yq wl-clipboard swaylock grim slurp \
         zoxide fish fisher qutebrowser \
-        calibre helix starship ueberzugpp \
+        helix starship ueberzugpp \
         glow pup-bin aha fastfetch jqp-bin \
         zenith qt5-wayland umpv urlview arti \
-        zathura-pdf-poppler keepassxc
+        zathura-pdf-mupdf keepassxc \
+        vscode-html-languageserver
     echo "falha ao instalar pacotes"
     return 1
 end

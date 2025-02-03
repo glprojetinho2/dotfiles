@@ -20,6 +20,7 @@ application/x-gnome-saved-search=yazi.desktop
 x-scheme-handler/about=org.qutebrowser.qutebrowser.desktop
 x-scheme-handler/unknown=org.qutebrowser.qutebrowser.desktop
 image/jpg=oculante.desktop
+application/epub+zip=org.pwmt.zathura.desktop
 
 [Added Associations]
 x-scheme-handler/http=userapp-Pale Moon.desktop;librewolf.desktop;

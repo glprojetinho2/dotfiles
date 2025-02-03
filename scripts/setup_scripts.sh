@@ -1,7 +1,7 @@
-#!/bin/bash
+#!/bin/sh
 for file in *
 do
   path=$(realpath $file)
-  cmd_name=$(basename $file)
+  cmd_name=$(basename $file .sh)
   ln -srf "$path" "$HOME/.local/bin/$cmd_name"
 done

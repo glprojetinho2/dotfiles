@@ -17,11 +17,8 @@ if [ ! -d $vim_clip ]; then
   git clone https://github.com/jasonccox/vim-wayland-clipboard.git $vim_clip
 fi
 
-# configura o i3wm
-fetch_cfg i3wm/config $HOME/.i3/config
-
-# configura o sway
-fetch_cfg sway $HOME/.sway
+# configura o river (window manager)
+fetch_cfg river $HOME/.config/river
 
 # configura os papéis de parede
 fetch_cfg wallpapers $HOME/.sway/wallpapers
@@ -53,7 +50,8 @@ fetch_cfg scripts/screen_recorder.sh $HOME/.config/myscripts/screen_recorder.sh
 fetch_cfg starship/config.toml $HOME/.config/starship.toml
 
 # configura o fish
-fetch_cfg fish $HOME/.config/fish
+fetch_cfg zsh $HOME/.config/zsh
+fetch_cfg .zshenv $HOME/.zshenv
 
 # configura o fish
 fetch_cfg mpv $HOME/.config/mpv
