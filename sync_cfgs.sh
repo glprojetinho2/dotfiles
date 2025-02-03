@@ -17,6 +17,14 @@ if [ ! -d $vim_clip ]; then
   git clone https://github.com/jasonccox/vim-wayland-clipboard.git $vim_clip
 fi
 
+# coloca os scripts no PATH
+for file in scripts/*
+do
+  path=$(realpath $file)
+  cmd_name=$(basename $file .sh)
+  ln -srf "$path" "$HOME/.local/bin/$cmd_name"
+done
+
 # configura o river (window manager)
 fetch_cfg river $HOME/.config/river
 

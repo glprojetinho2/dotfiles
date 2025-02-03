@@ -16,7 +16,7 @@ fi
 video_query="$(tac $histfile | sed '/^$/d' | rofi -dmenu -i -p "Search query")"
 if [[ -z $video_query ]]; then
 	echo "no input."
-	return 1
+	exit 1
 fi
 
 raw_video_list="$(pipe-viewer --no-interactive $video_query --custom-layout="[[video]]\ntitle = '''*TITLE*'''\nurl = '''*URL*'''" | sed -e "s/\"/'/g" -e "/^\$/d" -e 's/\x1b\[[0-9;]*m//g')"
@@ -28,7 +28,7 @@ url_list="$(echo "$video_list" | jq -r '.[].url')"
 if echo $video_query | grep '^https?://'; then
 	# a single link already spawns a video,
 	# so we just exit.
-	return 0
+	exit 0
 fi
 
 sed -i "/^$video_query\$/d" $histfile

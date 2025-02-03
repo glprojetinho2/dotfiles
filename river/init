@@ -9,12 +9,17 @@
 # documentation.
 # Note: the "Super" modifier is also known as Logo, GUI, Windows, Mod4, etc.
 
-for command in waybar dunst 'arti proxy'
+pkill waybar
+riverctl spawn waybar
+for command in keepasscx dunst 'arti proxy'
 do
-    if [[ ! $(pgrep -f $command) ]]; then
-        riverctl spawn $command
+    grep_cmd='pgrep'
+    if [[ $command = *" "* ]]; then
+        grep_cmd='pgrep -f'
     fi
+    eval "$grep_cmd '$command'" || riverctl spawn $command
 done
+
 riverctl focus-follows-cursor normal
 
 riverctl map normal Super P spawn 'rofi -show drun'
@@ -35,6 +40,8 @@ riverctl map normal Super F9 spawn "musicipc plusminute"
 riverctl map normal Super F11 spawn "musicipc prev"
 riverctl map normal Super F12 spawn "musicipc next"
 riverctl map normal Super Y spawn youtube_menu
+riverctl map normal Super+Shift Y spawn youtube_music_menu
+riverctl map normal Super+Shift R spawn ~/Programas/dotfiles/river/init
 
 # Super+Shift+Return to start an instance of alacritty 
 riverctl map normal Super+Shift Return spawn alacritty
@@ -116,6 +123,15 @@ do
     # Super+Shift+Control+[1-9] to toggle tag [0-8] of focused view
     riverctl map normal Super+Shift+Control $i toggle-view-tags $tags
 done
+
+scratch_tag=$((1 << 20 ))
+
+riverctl map normal Super minus toggle-focused-tags ${scratch_tag}		# toggle the scratchpad
+riverctl map normal Super+Shift minus set-view-tags ${scratch_tag}		# send windows to the scratchpad
+
+# Set spawn tagmask to ensure new windows do not have the scratchpad tag unless explicitly set.
+all_but_scratch_tag=$(( ((1 << 32) - 1) ^ $scratch_tag ))
+riverctl spawn-tagmask ${all_but_scratch_tag}
 
 # Super+0 to focus all tags
 # Super+Shift+0 to tag focused view with all tags

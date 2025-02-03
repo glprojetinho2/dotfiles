@@ -1,34 +1,16 @@
 #!/bin/zsh
 
 command=$1
-soc=/tmp/mpvmusicsocket
+export music_socket=/tmp/mpvmusicsocket
 
 # Converts `watch?v=???` (or the whole url) to the video's title (based on /tmp/playlist.json)
 function url_to_title() {
-    if echo "$@" | grep -Eq 'watch.+'
+    if ! echo "$@" | grep -Eq 'watch.+'
     then
-        exit 1
+        echo "$@"
+        return 1
     fi
-    cat /tmp/playlist.json | jq -r ".[] | select(.url | contains(\"$argv\")) | .title"
-}
-# sends command to the mpv socket
-function mpv_command() {
-    parts=(${(@s: :)@})
-    mpv_args="$(echo $parts | awk '{ if ($0 == "true" || $0 == "false") print $0; else print "\"" $0 "\"" }')"
-    echo $mpv_args
-    joined=${(j|, |)mpv_args}
-    joined="${joined%\"}"
-    joined="${joined#\"}"
-    echo $joined
-    cat << EOF #| socat - $soc
-    {
-        "command": [$joined]
-    }
-EOF
-}
-
-function count_characters() {
-    echo $(($(echo "$1" | wc -m)-1))
+    cat /tmp/playlist.json | jq -r ".[] | select(.url | contains(\"$@\")) | .title"
 }
 
 case "$command" in
@@ -41,10 +23,10 @@ case "$command" in
         fi
         ;;
     plusminute)
-        echo 'seek 60' | socat - $soc
+        echo 'seek 60' | socat - $music_socket
         ;;
     minusminute)
-        echo 'seek -60' | socat - $soc
+        echo 'seek -60' | socat - $music_socket
         ;;
     next)
         mpv_command playlist-next
@@ -54,7 +36,7 @@ case "$command" in
         ;;
     status)
         function format_time() {
-            if [[ "$(count_characters "$1")" -eq "1" ]]; then
+            if [[ ${#1} -eq 1 ]]; then
                 echo "0$1"
             else
                 echo $1
@@ -62,13 +44,12 @@ case "$command" in
         }
         timestamp="$(mpv_command get_property time-pos | jq '.data')"
         minutes="$(echo $(($timestamp / 60)) | cut -d '.' -f1 )"
-        echo $timestamp
         minutes="$(format_time $minutes)"
         seconds="$(echo $(($timestamp % 60)) | cut -d '.' -f1 )"
         seconds="$(format_time $seconds)"
         # `relative_song \$playlist +1` fetches the next song
         function relative_song() {
-            if [[ "$(count $argv)" -ne "3" ]]; then
+            if [[ "${#@[@]}" -ne "3" ]]; then
                 return 1
             fi
             playlist=$1
@@ -76,20 +57,26 @@ case "$command" in
             offset=$3
             current_id="$(echo $playlist | jq -r ".data.[] | select(.filename | contains(\"$song_url\")) | .id")"
             
-            searched_song_url="$(echo $playlist | jq -r ".data.[] | select(.id==$(math "$current_id$offset")) | .filename")"
+            searched_song_url="$(echo $playlist | jq -r ".data.[] | select(.id==$(($current_id$offset))) | .filename")"
             url_to_title "$searched_song_url"
         }
 
-        song_url="$(mpv_command get_property filename | jq -r '.data') # this is actually `watch?v=???`"
+        # this is actually `watch?v=???`
+        song_url="$(mpv_command get_property filename | jq -r '.data')"
         playlist="$(mpv_command get_property playlist )"
-        song_title="$(relative_song $playlist $song_url '+0'); or return 1"
+        song_title="$(relative_song $playlist $song_url '+0')"
+        if [[ $? -ne 0 ]]; then
+            echo -e "$song_url\n$song_title"
+            echo "coudn't figure out the songs title"
+            exit 1
+        fi
         next="$(relative_song $playlist $song_url '+1')"
-        if [[ -z $next ]]; then
+        if [[ ! -z $next ]]; then
             next="$(echo "$next <span foreground='yellow'>(next)</span>\n")"
         fi
 
         previous="$(relative_song $playlist $song_url '-1')"
-        if [[ -z $previous ]]; then
+        if [[ ! -z $previous ]]; then
             previous="$(echo "\n$previous <span foreground='yellow'>(previous)</span>")"
         fi
 
@@ -97,14 +84,14 @@ case "$command" in
         previousprevious="$(echo "\n$(relative_song $playlist $song_url '-2')")"
 
         title_stop_at=40
-        trimmed_song_title=$song_title
-        if $(count_characters "$song_title") -gt $title_stop_at; then
+        trimmed_song_title="$song_title"
+        if [[ ${#song_title} -gt $title_stop_at ]]; then
             trimmed_song_title="$(echo $song_title | cut -c1-40)..."
         fi
-        cat << EOF
+        cat << EOF | paste -sd' ' - 
         {
             "text": "[$trimmed_song_title] $minutes:$seconds",
-            "tooltip": "<tt>$nextnext$next<b>$song_title</b>$previous$previousprevious</tt>"
+            "tooltip": "<tt>$nextnext$next\n<b>$song_title [<span foreground='yellow'><i>$minutes:$seconds</i></span>]</b>\n$previous$previousprevious</tt>"
         }
 EOF
         ;;

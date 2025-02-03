@@ -15,13 +15,13 @@ alias chm='chmod +100'
 alias hx=helix
 alias fzfc='fzf | wl-copy'
 alias lt='ls -ltr'
-alias gitc="git clone $(wl-paste)"
+alias gitc='git clone $(wl-paste)'
 alias ..='cd ..'
 alias yt_copy='cat /tmp/youtube_menu_link | wl-copy'
 
 export EDITOR=helix
 export VISUAL=helix
-MANPAGER='less -R'
+export MANPAGER='less -R'
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.cache/zsh/history

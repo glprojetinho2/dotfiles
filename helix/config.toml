@@ -2,7 +2,7 @@ theme = "curzon"
 
 [editor]
 mouse = false
-shell = ["fish", "-c"]
+shell = ["zsh", "-c"]
 
 [editor.cursor-shape]
 insert = "bar"

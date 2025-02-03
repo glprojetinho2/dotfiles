@@ -1,97 +1,102 @@
+// -*- mode: json -*-
+
 {
-	// "layer": "top", // Waybar at top layer
-	"position": "bottom", // Waybar position (top|bottom|left|right)
-	"height": 30, // Waybar height (to be removed for auto height)
-	"bar_id": "bar-0",
-	"ipc": true,
-	// "width": 1280, // Waybar width
-	// Choose the order of the modules
-	"modules-left": ["sway/workspaces", "sway/mode"],
-	"modules-center": ["custom/mpvmusic"],
-	"modules-right": [
-		"custom/pomodoro",
-		"pulseaudio",
-		"network",
-		"backlight",
-		"cpu",
-		"memory",
-		"clock",
-		"tray"
+	"layer": "top",
+	"position": "top",
+
+	"modules-left": [
+		"river/tags",
+		"custom/right-arrow-dark"
 	],
-	"sway/workspaces": {
-	    "disable-scroll": true,
-	    "persistent-workspaces": {
-	    	"1": [],
-	    	"2": [],
-	    	"3": [],
-	    	"4": [],
-	    	"5": [],
-	    	"6": [],
-	    },
-	    "format": "{name}"
-	},
-	"sway/mode": {
-		"format": "<span style=\"italic\">{}</span>"
-	},
-	"mpd": {
-		"format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ ",
-		"format-disconnected": "Disconnected ",
-		"format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
-		"unknown-tag": "N/A",
-		"interval": 2,
-		"consume-icons": {
-			"on": " "
-		},
-		"random-icons": {
-			"off": "<span color=\"#f53c3c\"></span> ",
-			"on": " "
-		},
-		"repeat-icons": {
-			"on": " "
-		},
-		"single-icons": {
-			"on": "1 "
-		},
-		"state-icons": {
-			"paused": "",
-			"playing": ""
-		},
-		"tooltip-format": "MPD (connected)",
-		"tooltip-format-disconnected": "MPD (disconnected)"
-	},
-	"idle_inhibitor": {
-		"format": "{icon}",
-		"format-icons": {
-			"activated": "",
-			"deactivated": ""
-		}
-	},
-	"tray": {
-		// "icon-size": 21,
-		"spacing": 10
-	},
-	"clock": {
-		"format": "{:%Y-%m-%d %I:%M}"
-	},
-	"cpu": {
-		"format": "C{usage}% ",
+	"modules-center": [
+		"custom/left-arrow-dark",
+		"clock#1",
+		"custom/left-arrow-light",
+		"custom/left-arrow-dark",
+		"clock#2",
+		"custom/right-arrow-dark",
+		"custom/right-arrow-light",
+		"clock#3",
+		"custom/right-arrow-dark",
+		"custom/mpvmusic"
+	],
+	"modules-right": [
+		"custom/left-arrow-dark",
+		"pulseaudio",
+		"custom/left-arrow-light",
+		"custom/left-arrow-dark",
+		"memory",
+		"custom/left-arrow-light",
+		"custom/left-arrow-dark",
+		"cpu",
+		"custom/left-arrow-light",
+		"custom/left-arrow-dark",
+		"custom/crypto",
+		"custom/left-arrow-light",
+		"custom/left-arrow-dark",
+		"disk",
+		"custom/left-arrow-light",
+		"custom/left-arrow-dark",
+		"tray",
+		"custom/pacman"
+	],
+
+	"custom/left-arrow-dark": {
+		"format": "",
 		"tooltip": false
 	},
+	"custom/left-arrow-light": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/right-arrow-dark": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/right-arrow-light": {
+		"format": "",
+		"tooltip": false
+	},
+
+	"river/tags": {
+		"num-tags": 6,
+	},
+
+	"clock#1": {
+		"format": "{:%a}",
+		"tooltip": false
+	},
+	"clock#2": {
+		"format": "{:%H:%M}",
+		"tooltip": false
+	},
+	"clock#3": {
+		"format": "{:%m-%d}",
+		"tooltip": false
+	},
+
+	"pulseaudio": {
+		"format": "{icon} {volume:2}%",
+		"format-bluetooth": "{icon}  {volume}%",
+		"format-muted": "MUTE",
+		"format-icons": {
+			"headphones": "",
+			"default": [
+				"",
+				""
+			]
+		},
+		"scroll-step": 5,
+		"on-click": "pamixer -t",
+		"on-click-right": "pavucontrol"
+	},
 	"memory": {
-		"format": "M{}% "
+		"interval": 5,
+		"format": "Mem {}%"
 	},
-	"temperature": {
-		// "thermal-zone": 2,
-		// "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-		"critical-threshold": 80,
-		// "format-critical": "{temperatureC}°C {icon}",
-		"format": "{temperatureC}°C {icon}",
-		"format-icons": ["", "", ""]
-	},
-	"backlight": {
-		// "device": "acpi_video1",
-		"format": "{percent}% ",
-		"format-icons": ["", ""]
+	"cpu": {
+		"interval": 5,
+		"format": "CPU {usage:2}%"
 	},
 	"battery": {
 		"states": {
@@ -99,49 +104,47 @@
 			"warning": 30,
 			"critical": 15
 		},
-		"format": "{capacity}% ",
-		"format-charging": "{capacity}%",
-		"format-plugged": "{capacity}%",
-		"format-alt": "{time} "
-		// "format-good": "", // An empty format will hide the module
-		// "format-full": "",
-		// "format-icons": ["", "", "", "", ""]
+		"format": "{icon} {capacity}%",
+		"format-icons": [
+			"",
+			"",
+			"",
+			"",
+			""
+		]
 	},
-	"battery#bat2": {
-		"bat": "BAT2"
+	"disk": {
+		"interval": 5,
+		"format": "Disk {percentage_used:2}%",
+		"path": "/"
 	},
-	"network": {
-		// "interface": "wlp2*", // (Optional) To force the use of this interface
-		"format-wifi": "{essid} ({signalStrength}%) ",
-		"format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
-		"format-linked": "{ifname} (No IP) ",
-		"format-disconnected": "Disconnected ",
-		"format-alt": "{ifname}: {ipaddr}/{cidr}"
+	"tray": {
+		"icon-size": 20
 	},
-	"pulseaudio": {
-		// "scroll-step": 1, // %, can be a float
-		"format": "{volume}%  {format_source}",
-		"format-bluetooth": "{volume}%  {format_source}",
-		"format-bluetooth-muted": " {format_source}",
-		"format-muted": " {format_source}",
-		"format-source": "{volume}% ",
-		"format-source-muted": "",
-		"on-click": "pavucontrol"
-	},
- "custom/mpvmusic": {
-	 	 "exec": "musicipc status",
-     "return-type": "json",
-     "interval": 1,
-     "format": "{}",
-     "on-click": "musicipc toggleplay",
-     "on-scroll-up": "musicipc next",
-     "on-scroll-down": "musicipc prev",
- },
- "custom/pomodoro": {
-	"format": "{}",
-	"return-type": "json",
-	"exec": "fish -c 'waybar-module-pomodoro -w $POMODORO_WORK -s $POMODORO_BREAK -l $POMODORO_LONG_BREAK --autow --autob'",
-	"on-click": "fish -c 'waybar-module-pomodoro -w $POMODORO_WORK -s $POMODORO_BREAK -l $POMODORO_LONG_BREAK --autow --autob toggle'",
-	"on-click-right": "fish -c 'waybar-module-pomodoro -w $POMODORO_WORK -s $POMODORO_BREAK -l $POMODORO_LONG_BREAK --autow --autob reset'",
+	"custom/pacman": {
+	  "format": "{icon}{}",
+	  "return-type": "json",
+	  "format-icons": {
+	    "pending-updates": " ",
+	    "updated": ""
+  },
+  "exec-if": "which waybar-updates",
+  "exec": "waybar-updates"
 },
+	"custom/crypto": {
+	    "format": "{}",
+	    "interval": 600,
+	    "return-type": "json",
+	    "exec": "COINMARKETCAP_API_KEY=$(cat ~/.coinmarketcap) xmr_based_coin", // change this if you installed manually
+	    "exec-if": "ping pro-api.coinmarketcap.com -c1"
+	},
+	"custom/mpvmusic": {
+	 	 "exec": "musicipc status",
+	    "return-type": "json",
+	    "interval": 1,
+	    "format": "",
+	    "on-click": "musicipc toggleplay",
+	    "on-scroll-up": "musicipc next",
+	    "on-scroll-down": "musicipc prev",
+	},
 }

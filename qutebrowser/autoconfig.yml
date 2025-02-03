@@ -15,6 +15,8 @@ settings:
         <Alt+e>: edit-url
   colors.hints.bg:
     global: white
+  content.javascript.clipboard:
+    global: access
   content.javascript.enabled:
     '*://web.whatsapp.com/*': true
     global: false
@@ -71,7 +73,7 @@ settings:
     global: http://lbmegc3rjnekmdxuisynqdc7y3m2tgyq7gj257ooddaobxqjw36bdayd.onion/search
   url.searchengines:
     global:
-      DEFAULT: https://4get.ca/web?s={}&focus=any&lang=any&country=any&region=any&domain=1
+      DEFAULT: http://4getwebfrq5zr4sxugk6htxvawqehxtdgjrbcn2oslllcol2vepa23yd.onion/web?s={}&focus=any&lang=any&country=any&region=any&domain=1
       ana: https://annas-archive.org/search?index=&page=1&q={}
       arc: https://archive.org/search?query={}
       en: https://dictionary.cambridge.org/dictionary/english/{}
