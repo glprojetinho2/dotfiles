@@ -193,8 +193,8 @@ riverctl border-color-unfocused 0x586e75
 riverctl set-repeat 50 500
 riverctl keyboard-layout br
 
-# Make all views with an app-id that starts with "float" and title "foo" start floating.
-riverctl rule-add -app-id 'float*' -title foo float
+riverctl rule-add -title '_TODO.TXT_' tags $(( 1 << 20 ))
+pgrep -f _TODO.TXT_ || riverctl spawn "alacritty -o 'font.size=16' -o 'window.title=\"_TODO.TXT_\"' -e helix -w ~/Anotações ~/Anotações/todo.txt & disown"
 
 # Make all views with app-id "bar" and any title use client-side decorations
 riverctl rule-add -app-id bar csd
