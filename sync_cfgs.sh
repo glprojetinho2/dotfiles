@@ -21,7 +21,7 @@ fi
 for file in scripts/*
 do
   path=$(realpath $file)
-  cmd_name=$(basename $file .sh)
+  cmd_name=$(basename $file | sed 's/\.[^.]*$//')
   ln -srf "$path" "$HOME/.local/bin/$cmd_name"
 done
 

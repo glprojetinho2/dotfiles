@@ -22,13 +22,12 @@ done
 
 riverctl focus-follows-cursor normal
 
+riverctl map normal Super Z spawn "$SHELL -c screen_recorder"
+riverctl map normal Super+Shift Z spawn "$SHELL -c 'screen_recorder --area'"
 riverctl map normal Super P spawn 'rofi -show drun'
 riverctl map normal Super+Shift W spawn archwiki-offline
 riverctl map normal None Print spawn "grim - > /tmp/print.png && cat /tmp/pring.png | wl-copy -t 'image/png'"
 riverctl map normal Super Print spawn "grim -g \"\$(slurp -d)\" - > /tmp/print.png && cat /tmp/print.png | wl-copy -t 'image/png'"
-riverctl map normal Super Z spawn screen_recorder
-riverctl map normal Super+Shift Z spawn "screen_recorder -g \"\$(slurp)\""
-riverctl map normal Super+Control B spawn "alacritty -e fish -e 'bmenu'"
 riverctl map normal Super F2 spawn qutebrowser
 riverctl map normal Super F3 spawn 'alacritty -e y'
 riverctl map normal Super F4 spawn anki
