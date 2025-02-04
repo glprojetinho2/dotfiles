@@ -1,4 +1,4 @@
-function help_binding {
+function help_binding() {
     # Get all commandline tokens not starting with "-", up to and including the cursor's
     args="$(echo "$LBUFFER" | grep -vE '^-|^$')"
 
@@ -9,7 +9,7 @@ function help_binding {
     fi
 
     # Skip leading commands and display the manpage of following command
-    while [[ ! -z $args[2] ]] && echo $args[1] | grep -E '^(and|begin|builtin|caffeinate|command|doas|entr|env|exec|if|mosh|nice|not|or|pipenv|prime-run|setsid|sudo|systemd-nspawn|time|watch|while|xargs|.*=.*)$'; do
+    while [ ! -z $args[2] ] && [ ! -z $(echo $args[1] | grep -E '^(and|begin|builtin|caffeinate|command|doas|entr|env|exec|if|mosh|nice|not|or|pipenv|prime-run|setsid|sudo|systemd-nspawn|time|watch|while|xargs|.*=.*)$') ]; do
         echo $args[1]
         $args[1]=()
     done
@@ -23,24 +23,20 @@ function help_binding {
     # the best we can do is to *try* the man page, and assume that `man` will return false if it fails.
     # See #7863.
     cmds=()
-    if set -q args[2]
-        set -a cmds "$maincmd $args[2] -help" "$maincmd $args[2] -h" "$maincmd $args[2] --help" "$maincmd $args[2] help"
-    end
-    set -a cmds "$maincmd -help" "$maincmd -h" "$maincmd --help" "$maincmd help"
-    for help_command in $cmds
-        if eval $help_command | cat &>/dev/null
+    if [[ ! -z args[2] ]]; then
+        cmds+=("$maincmd $args[2] -help" "$maincmd $args[2] -h" "$maincmd $args[2] --help" "$maincmd $args[2] help")
+    fi
+    cmds+=("$maincmd -help" "$maincmd -h" "$maincmd --help" "$maincmd help")
+    for help_command in $cmds; do
+        if eval $help_command | cat &>/dev/null; then
             eval $help_command | $MANPAGER
             break
         else
             printf \a
-        end
-    end
-    commandline -f repaint
-end
-  echo -e "\n"
-  echo $BUFFER
-  echo $CURSOR
-  echo $LBUFFER
+        fi
+    done
+    # commandline -f repaint
+    zle reset-prompt
 }
 
 autoload -U help_binding
