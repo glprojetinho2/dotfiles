@@ -1,1 +1,5 @@
 **/qsettings/*
+zsh/.zcompdump
+scripts/**/debug/*
+**/.rustc_info.json
+**/.new
