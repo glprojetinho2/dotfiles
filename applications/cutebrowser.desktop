@@ -3,4 +3,4 @@ Type=Application
 Name=Cutebrowser
 Icon=qutebrowser
 Comment=Qutebrowser without Tor :(
-Exec=qutebrowser --basedir ~/.config/qutebrowser-for-shitty-websites/
+Exec=sh -c "qutebrowser --basedir $HOME/.config/qutebrowser-for-shitty-websites/"

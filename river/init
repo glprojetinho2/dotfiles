@@ -11,7 +11,7 @@
 
 pkill waybar
 riverctl spawn waybar
-for command in keepassxc dunst 'arti proxy'
+for command in syncthing keepassxc dunst 'arti proxy'
 do
     grep_cmd='pgrep'
     if [[ $command = *" "* ]]; then
@@ -22,15 +22,18 @@ done
 
 riverctl focus-follows-cursor normal
 
-riverctl map normal Super Z spawn "$SHELL -c screen_recorder"
-riverctl map normal Super+Shift Z spawn "$SHELL -c 'screen_recorder --area'"
+SHELL_COMMAND='zsh -ic'
+TERMINAL="alacritty -e $SHELL_COMMAND"
+
+riverctl map normal Super Z spawn "$SHELL_COMMAND screen_recorder"
+riverctl map normal Super+Shift Z spawn "$SHELL_COMMAND 'screen_recorder --area'"
 riverctl map normal Super P spawn 'rofi -show drun'
 riverctl map normal Super+Shift W spawn archwiki-offline
 riverctl map normal None Print spawn "grim - > /tmp/print.png && cat /tmp/pring.png | wl-copy -t 'image/png'"
 riverctl map normal Super Print spawn "grim -g \"\$(slurp -d)\" - > /tmp/print.png && cat /tmp/print.png | wl-copy -t 'image/png'"
 riverctl map normal Super F2 spawn qutebrowser
 riverctl map normal Super+Shift F2 spawn "qutebrowser --basedir ~/.config/qutebrowser-for-shitty-websites/"
-riverctl map normal Super F3 spawn 'alacritty -e y'
+riverctl map normal Super F3 spawn "$TERMINAL y"
 riverctl map normal Super F4 spawn anki
 riverctl map normal Super F5 spawn "pactl set-sink-volume @DEFAULT_SINK@ -5%"
 riverctl map normal Super F6 spawn "pactl set-sink-volume @DEFAULT_SINK@ +5%"
@@ -42,6 +45,7 @@ riverctl map normal Super F12 spawn "musicipc next"
 riverctl map normal Super Y spawn youtube_menu
 riverctl map normal Super+Shift Y spawn youtube_music_menu
 riverctl map normal Super+Shift R spawn ~/.config/river/init
+riverctl map normal Super G spawn "$TERMINAL 'tgpt --multiline'"
 
 # Super+Shift+Return to start an instance of alacritty 
 riverctl map normal Super+Shift Return spawn alacritty
@@ -156,10 +160,10 @@ riverctl map normal Super Left send-layout-cmd rivertile "main-location left"
 riverctl declare-mode passthrough
 
 # Super+F11 to enter passthrough mode
-riverctl map normal Super F11 enter-mode passthrough
+riverctl map normal Super+Shift F11 enter-mode passthrough
 
 # Super+F11 to return to normal mode
-riverctl map passthrough Super F11 enter-mode normal
+riverctl map passthrough Super+Shift F11 enter-mode normal
 
 # Various media key mapping examples for both normal and locked mode which do
 # not have a modifier
@@ -185,16 +189,17 @@ do
 done
 
 # Set background and border color
-riverctl background-color 0x002b36
-riverctl border-color-focused 0x93a1a1
-riverctl border-color-unfocused 0x586e75
+riverctl background-color 0x000000
+riverctl border-color-focused 0xffffff
+riverctl border-color-unfocused 0x000000
 
 # Set keyboard repeat rate
 riverctl set-repeat 50 500
 riverctl keyboard-layout br
 
 riverctl rule-add -title '_TODO.TXT_' tags $(( 1 << 20 ))
-pgrep -f _TODO.TXT_ || riverctl spawn "alacritty -o 'font.size=16' -o 'window.title=\"_TODO.TXT_\"' -e helix -w ~/Anotações ~/Anotações/todo.txt & disown"
+riverctl rule-add -title '_TODO.TXT_' float
+pgrep -f _TODO.TXT_ || riverctl spawn "alacritty -o 'window.title=\"_TODO.TXT_\"' -e helix -w ~/Anotações ~/Anotações/todo.txt & disown"
 
 # Make all views with app-id "bar" and any title use client-side decorations
 riverctl rule-add -app-id bar csd

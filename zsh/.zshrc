@@ -1,6 +1,14 @@
 function help_binding() {
-    # Get all commandline tokens not starting with "-", up to and including the cursor's
-    args="$(echo "$LBUFFER" | grep -vE '^-|^$')"
+    echo -e '\n'
+    function command_filter() {
+        echo "LBUFFER: $LBUFFER"
+        args_raw="$(echo $LBUFFER | sed -e 's/"[^"]*"//g' -e "s/'[^']*'//g")"
+        echo "args_raw: $args_raw"
+        args=${(s/ /)args_raw}
+        # Get all commandline tokens not starting with "-", up to and including the cursor's
+        args=${args:#-*}
+    }
+    args=command_filter
 
     # If commandline is empty, exit.
     if [[ -z args ]]; then
@@ -11,7 +19,7 @@ function help_binding() {
     # Skip leading commands and display the manpage of following command
     while [ ! -z $args[2] ] && [ ! -z $(echo $args[1] | grep -E '^(and|begin|builtin|caffeinate|command|doas|entr|env|exec|if|mosh|nice|not|or|pipenv|prime-run|setsid|sudo|systemd-nspawn|time|watch|while|xargs|.*=.*)$') ]; do
         echo $args[1]
-        $args[1]=()
+        args[1]=()
     done
 
     # If there are at least two tokens not starting with "-", the second one might be a subcommand.
@@ -28,25 +36,54 @@ function help_binding() {
     fi
     cmds+=("$maincmd -help" "$maincmd -h" "$maincmd --help" "$maincmd help")
     for help_command in $cmds; do
-        if eval $help_command | cat &>/dev/null; then
-            eval $help_command | $MANPAGER
+        if eval "$help_command &>/dev/null"; then
+            echo "help_command: $help_command"
+            echo "args: $args"
+            echo "maincmd: $maincmd"
+            eval "$help_command | $MANPAGER"
             break
         else
             printf \a
         fi
     done
-    # commandline -f repaint
     zle reset-prompt
 }
 
 autoload -U help_binding
 zle -N help_binding
 
+function reload_config() {
+    echo -e "\n"
+    source ~/.config/zsh/.zshrc
+    echo -e "\n"
+    clear
+    zle reset-prompt
+}
+
+autoload -U reload_config
+zle -N reload_config
+
+function edit_command() {
+  file="$(which $BUFFER)"
+  file_owner_id="$(stat -c %u $file)"
+  current_user_id="$(id -u)"
+  if [[ "$file_owner_id" == "$current_user_id" ]]; then
+    $EDITOR $file
+  else
+    sudo $EDITOR $file
+  fi
+}
+
+autoload -U edit_command
+zle -N edit_command
+
 function _bindings() {
   bindkey '^L' clear-screen-and-scrollback
   bindkey "^[e" edit-command-line
+  bindkey "^[E" edit_command
   # F1 = manpage
   bindkey "^[OP" help_binding
+  bindkey "^[R" reload_config
 }
 zvm_after_init_commands+=(_bindings)
 
@@ -63,6 +100,7 @@ alias lt='ls -ltr'
 alias gitc='git clone $(wl-paste)'
 alias ..='cd ..'
 alias yt_copy='cat /tmp/youtube_menu_link | wl-copy'
+alias cdfzf='cd $(dirname (find . | fzf | xargs realpath || pwd))'
 
 export EDITOR=helix
 export VISUAL=helix
@@ -94,9 +132,6 @@ function lofzf() {
   locate $1 | fzf | wl-copy
 }
 
-function edit_command() {
-  $EDITOR $(which $1)
-}
 
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd

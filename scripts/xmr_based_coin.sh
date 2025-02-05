@@ -1,7 +1,14 @@
 #!/bin/zsh
-# turn into rust
-COINMARKETCAP_API_KEY="$(cat ~/.coinmarketcap)"
-coin_output="$(waybar-crypto)"
-main_text="$(echo "$coin_output" | jq -r '.text' | cut -d' ' -f1-2)"
-tooltip_info="$(echo "$coin_output" | jq -r '.text' | cut -d' ' -f3-)"
-echo "{\"text\": \"$main_text\", \"tooltip\": \"$tooltip_info\", \"class\": \"crypto\"}"
+coin_output="$(COINMARKETCAP_API_KEY="$(cat ~/.coinmarketcap)" waybar-crypto)"
+text="$(echo "$coin_output" | jq -r '.text')"
+coins=(${(s/ | /)text})
+waybar_text=()
+waybar_tooltip=()
+for coin in $coins; do
+  icon="$(echo $coin | cut -d' ' -f1 | sed 's/^[ \t]*//;s/[ \t]*$//')"
+  icon=" <span size='xx-large'>$icon</span> "
+  waybar_text+=("$icon<span baseline_shift='2pt'>$(echo $coin | cut -d' ' -f2 | sed 's/^[ \t]*//;s/[ \t]*$//')</span>")
+  waybar_tooltip+=("$icon$(echo $coin | cut -d' ' -f3- | sed 's/^[ \t]*//;s/[ \t]*$//')")
+  
+done
+echo "{\"text\": \"${(j/ /)waybar_text}\", \"tooltip\": \"${(j/\\n/)waybar_tooltip}\", \"class\": \"crypto\"}"

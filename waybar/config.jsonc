@@ -6,41 +6,20 @@
 
 	"modules-left": [
 		"river/tags",
-		"custom/right-arrow-dark"
+		"custom/pomodoro"
 	],
 	"modules-center": [
-		"custom/left-arrow-dark",
-		"clock#1",
-		"custom/left-arrow-light",
-		"custom/left-arrow-dark",
-		"clock#2",
-		"custom/right-arrow-dark",
-		"custom/right-arrow-light",
-		"clock#3",
-		"custom/right-arrow-dark",
+		"custom/clock",
 	],
 	"modules-right": [
-		"custom/left-arrow-dark",
 		"custom/mpvmusic",
-		"custom/left-arrow-light",
-		"custom/left-arrow-dark",
 		"pulseaudio",
-		"custom/left-arrow-light",
-		"custom/left-arrow-dark",
 		"memory",
-		"custom/left-arrow-light",
-		"custom/left-arrow-dark",
 		"cpu",
-		"custom/left-arrow-light",
-		"custom/left-arrow-dark",
 		"custom/crypto",
-		"custom/left-arrow-light",
-		"custom/left-arrow-dark",
+		"custom/pacman",
 		"disk",
-		"custom/left-arrow-light",
-		"custom/left-arrow-dark",
 		"tray",
-		"custom/pacman"
 	],
 
 	"custom/left-arrow-dark": {
@@ -64,21 +43,13 @@
 		"num-tags": 6,
 	},
 
-	"clock#1": {
-		"format": "{:%a}",
-		"tooltip": false
+	"custom/clock": {
+		"format": " {} ",
+		"interval": 1,
+		"exec": "date \"+%A %Y-%m-%d %H:%M:%S\" | sed 's/\\(\\w\\)/\\U\\1/'"
 	},
-	"clock#2": {
-		"format": "{:%H:%M}",
-		"tooltip": false
-	},
-	"clock#3": {
-		"format": "{:%m-%d}",
-		"tooltip": false
-	},
-
 	"pulseaudio": {
-		"format": "{icon} {volume:2}%",
+		"format": "<span size='xx-large'>{icon}</span> <span baseline_shift='2pt'>{volume:2}%</span>",
 		"format-bluetooth": "{icon}  {volume}%",
 		"format-muted": "MUTE",
 		"format-icons": {
@@ -121,26 +92,31 @@
 		"path": "/"
 	},
 	"tray": {
-		"icon-size": 20
+		"icon-size": 16
 	},
-"custom/pacman": {
-	  "format": "{icon}{}",
-	  "return-type": "json",
-    "interval": 60,
-	  "format-icons": {
-	    "pending-updates": " ",
-	    "updated": ""
-	  },
-	  "exec-if": "which waybar-updates",
-	  "exec": "waybar-updates"
-},
+	"custom/pacman": {
+		"format": "  {} ",
+		"interval": 3600, // every hour
+		"exec": "checkupdates | wc -l", // # of updates
+		"exec-if": "exit 0", // always run; consider advanced run conditions
+		"on-click": "$TERMINAL 'paru -Syu' && ~/.config/river/init", // update system
+		"signal": 8,
+	},	
 	"custom/crypto": {
-	    "format": "{}",
+	    "format": " {} ",
 	    "interval": 600,
 	    "return-type": "json",
-	    "exec": "COINMARKETCAP_API_KEY=$(cat ~/.coinmarketcap) xmr_based_coin", // change this if you installed manually
+	    "exec": "xmr_based_coin",
 	    "exec-if": "ping pro-api.coinmarketcap.com -c1"
 	},
+
+  "custom/pomodoro": {
+ 	"format": "{}",
+ 	"return-type": "json",
+	"exec": "waybar-module-pomodoro -w $POMODORO_WORK -s $POMODORO_BREAK -l $POMODORO_LONG_BREAK --autow --autob",
+	"on-click": "waybar-module-pomodoro -w $POMODORO_WORK -s $POMODORO_BREAK -l $POMODORO_LONG_BREAK --autow --autob toggle",
+	"on-click-right": "waybar-module-pomodoro -w $POMODORO_WORK -s $POMODORO_BREAK -l $POMODORO_LONG_BREAK --autow --autob reset",
+ },
 	"custom/mpvmusic": {
 	 	 "exec": "musicipc status",
 	    "return-type": "json",

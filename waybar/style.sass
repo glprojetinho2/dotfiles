@@ -1,0 +1,51 @@
+$normal-font-size: 10px
+$arrow-size: 21px
+$waybar-background: black
+$components-background: white
+$hover-color: #aaa494
+$text-color: #000000
+$tags_padding: 0 7px
+
+*
+  font-size: $normal-font-size
+  font-family: "0xProto Nerd Font Mono"
+  border-radius: 16px
+  padding: 0
+  margin: 0
+
+window#waybar
+  background: $waybar-background
+  color: $text-color
+
+#tags
+  background: $components-background
+  padding: $tags_padding
+
+#custom-clock
+    background: $components-background
+
+#pulseaudio, #memory, #cpu, #battery, #disk, #tray, #custom-mpvmusic, #custom-crypto, #custom-pacman, #custom-pomodoro
+  background: $components-background
+  margin: 3px
+  padding: 0 6px
+
+#tray
+  padding: 0 6px
+
+#custom-mpvmusic
+  font-size: 20px
+
+#tags button
+  padding: $tags_padding
+  margin: 0
+  color: $text-color
+
+  &.focused
+    color: blue
+
+  &:hover
+    background: $waybar-background
+    color: $components-background
+
+.coin_icon
+  font-size: 16px
