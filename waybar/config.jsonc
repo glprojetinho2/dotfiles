@@ -18,9 +18,11 @@
 		"custom/right-arrow-light",
 		"clock#3",
 		"custom/right-arrow-dark",
-		"custom/mpvmusic"
 	],
 	"modules-right": [
+		"custom/left-arrow-dark",
+		"custom/mpvmusic",
+		"custom/left-arrow-light",
 		"custom/left-arrow-dark",
 		"pulseaudio",
 		"custom/left-arrow-light",
@@ -121,15 +123,16 @@
 	"tray": {
 		"icon-size": 20
 	},
-	"custom/pacman": {
+"custom/pacman": {
 	  "format": "{icon}{}",
 	  "return-type": "json",
+    "interval": 60,
 	  "format-icons": {
 	    "pending-updates": " ",
 	    "updated": ""
-  },
-  "exec-if": "which waybar-updates",
-  "exec": "waybar-updates"
+	  },
+	  "exec-if": "which waybar-updates",
+	  "exec": "waybar-updates"
 },
 	"custom/crypto": {
 	    "format": "{}",
@@ -142,7 +145,7 @@
 	 	 "exec": "musicipc status",
 	    "return-type": "json",
 	    "interval": 1,
-	    "format": "",
+	    "format": "  ",
 	    "on-click": "musicipc toggleplay",
 	    "on-scroll-up": "musicipc next",
 	    "on-scroll-down": "musicipc prev",

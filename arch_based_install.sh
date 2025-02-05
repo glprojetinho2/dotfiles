@@ -49,8 +49,8 @@ if ! paru -S --needed \
         zenith qt5-wayland umpv urlview arti \
         zathura-pdf-mupdf keepassxc antigen \
         vscode-html-languageserver river \
-        waybar-updates waybar-cryptos
-        ; then
+        waybar-updates waybar-crypto
+        then
     echo "falha ao instalar pacotes"
     exit 1
 fi

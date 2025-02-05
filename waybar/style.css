@@ -33,13 +33,13 @@ window#waybar {
 #disk,
 #tray,
 #custom-mpvmusic,
-#custom-crypto {
+#custom-crypto,
+#custom-pacman {
 	background: #1a1a1a;
 }
 
 #custom-mpvmusic {
   font-size: 20px;	 
-  padding: 0 2px;
 }
 
 #tags button {

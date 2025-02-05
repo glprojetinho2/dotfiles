@@ -11,7 +11,7 @@
 
 pkill waybar
 riverctl spawn waybar
-for command in keepasscx dunst 'arti proxy'
+for command in keepassxc dunst 'arti proxy'
 do
     grep_cmd='pgrep'
     if [[ $command = *" "* ]]; then
@@ -30,6 +30,7 @@ riverctl map normal Super Z spawn screen_recorder
 riverctl map normal Super+Shift Z spawn "screen_recorder -g \"\$(slurp)\""
 riverctl map normal Super+Control B spawn "alacritty -e fish -e 'bmenu'"
 riverctl map normal Super F2 spawn qutebrowser
+riverctl map normal Super+Shift F2 spawn "qutebrowser --basedir ~/.config/qutebrowser-for-shitty-websites/"
 riverctl map normal Super F3 spawn 'alacritty -e y'
 riverctl map normal Super F4 spawn anki
 riverctl map normal Super F5 spawn "pactl set-sink-volume @DEFAULT_SINK@ -5%"
@@ -41,7 +42,7 @@ riverctl map normal Super F11 spawn "musicipc prev"
 riverctl map normal Super F12 spawn "musicipc next"
 riverctl map normal Super Y spawn youtube_menu
 riverctl map normal Super+Shift Y spawn youtube_music_menu
-riverctl map normal Super+Shift R spawn ~/Programas/dotfiles/river/init
+riverctl map normal Super+Shift R spawn ~/.config/river/init
 
 # Super+Shift+Return to start an instance of alacritty 
 riverctl map normal Super+Shift Return spawn alacritty

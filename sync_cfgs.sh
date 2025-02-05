@@ -38,6 +38,9 @@ fetch_cfg alacritty $HOME/.config/alacritty
 fetch_cfg waybar/config.jsonc $HOME/.config/waybar/config
 fetch_cfg waybar/style.css $HOME/.config/waybar/style.css
 
+# mostra o preço do monero na waybar
+fetch_cfg waybar/waybar-crypto/config.ini $HOME/.config/waybar-crypto/config.ini
+
 # configura as aplicações-padrão
 fetch_cfg mimeapps.list ~/.config/mimeapps.list
 

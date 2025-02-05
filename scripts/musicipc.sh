@@ -72,16 +72,16 @@ case "$command" in
         fi
         next="$(relative_song $playlist $song_url '+1')"
         if [[ ! -z $next ]]; then
-            next="$(echo "$next <span foreground='yellow'>(next)</span>\n")"
+            next="$next <span foreground='yellow'>(next)</span>\n"
         fi
 
         previous="$(relative_song $playlist $song_url '-1')"
         if [[ ! -z $previous ]]; then
-            previous="$(echo "\n$previous <span foreground='yellow'>(previous)</span>")"
+            previous="\n$previous <span foreground='yellow'>(previous)</span>"
         fi
 
-        nextnext="$(echo "$(relative_song $playlist $song_url '+2')\n")"
-        previousprevious="$(echo "\n$(relative_song $playlist $song_url '-2')")"
+        nextnext="$(relative_song $playlist $song_url '+2')\n"
+        previousprevious="\n$(relative_song $playlist $song_url '-2')"
 
         title_stop_at=40
         trimmed_song_title="$song_title"
@@ -91,7 +91,7 @@ case "$command" in
         cat << EOF | paste -sd' ' - 
         {
             "text": "[$trimmed_song_title] $minutes:$seconds",
-            "tooltip": "<tt>$nextnext$next\n<b>$song_title [<span foreground='yellow'><i>$minutes:$seconds</i></span>]</b>\n$previous$previousprevious</tt>"
+            "tooltip": "<tt>$nextnext$next<b>$song_title [<span foreground='yellow'><i>$minutes:$seconds</i></span>]</b>$previous$previousprevious</tt>"
         }
 EOF
         ;;

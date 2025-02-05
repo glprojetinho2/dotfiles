@@ -16,7 +16,7 @@ settings:
   colors.hints.bg:
     global: white
   content.javascript.clipboard:
-    global: access
+    global: none
   content.javascript.enabled:
     '*://web.whatsapp.com/*': true
     global: false

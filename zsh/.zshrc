@@ -48,6 +48,10 @@ function lofzf() {
   locate $1 | fzf | wl-copy
 }
 
+function edit_command() {
+  $EDITOR $(which $1)
+}
+
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 	yazi "$@" --cwd-file="$tmp"
