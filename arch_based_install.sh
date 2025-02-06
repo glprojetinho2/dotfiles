@@ -44,7 +44,7 @@ if ! paru -S --needed \
         multibg-sway waybar zathura \
         jq yq wl-clipboard swaylock grim slurp \
         zoxide fish fisher qutebrowser \
-        helix ueberzugpp \
+        helix ueberzugpp wlopm \
         glow pup-bin aha fastfetch jqp-bin \
         zenith qt5-wayland umpv urlview arti \
         zathura-pdf-mupdf keepassxc antigen \

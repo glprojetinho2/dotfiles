@@ -1,9 +1,10 @@
 $normal-font-size: 10px
 $arrow-size: 21px
 $waybar-background: black
-$components-background: white
-$hover-color: #aaa494
-$text-color: #000000
+$components-background: black
+$hover-color: orange
+$text-color: white
+$focused-tag: #FF9999
 $tags_padding: 0 7px
 
 *
@@ -38,11 +39,11 @@ window#waybar
   color: $text-color
 
   &.focused
-    color: blue
+    color: $focused-tag
 
   &:hover
     background: $waybar-background
-    color: $components-background
+    color: $hover-color
 
 .coin_icon
   font-size: 16px

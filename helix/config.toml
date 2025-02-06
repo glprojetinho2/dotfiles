@@ -3,6 +3,7 @@ theme = "blackwhite"
 [editor]
 mouse = false
 shell = ["zsh", "-c"]
+gutters = ["diagnostics", "spacer", "diff"]
 
 [editor.cursor-shape]
 insert = "bar"
