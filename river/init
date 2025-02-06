@@ -20,10 +20,12 @@ do
     eval "$grep_cmd '$command'" || riverctl spawn $command
 done
 
-lock_command='waylock -init-color 0x111111 -input-color 0x111166 -fail-color 0x661111 -ignore-empty-password && wlopm --on \*'
+lock_command='waylock -init-color 0x111111 -input-color 0x111166 -fail-color 0x661111 -ignore-empty-password'
 swayidle -w \
-	timeout 5 "$lock_command" \
-	timeout 10 'wlopm --off \*' &
+	timeout 120 "$lock_command &" \
+	timeout 240 'wlopm --off \*' \
+	resume 'wlopm --on \*' \
+	before-sleep "$lock_command &"
 
 riverctl focus-follows-cursor normal
 
