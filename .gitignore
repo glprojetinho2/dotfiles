@@ -3,3 +3,4 @@ zsh/.zcompdump
 scripts/**/debug/*
 **/.rustc_info.json
 **/.new
+zsh/.zshrc.zwc

@@ -45,14 +45,14 @@ settings:
   fonts.web.family.standard:
     global: 0xProto Nerd Font
   url.default_page:
-    global: http://4get.ca
+    global: http://lbmegc3rjnekmdxuisynqdc7y3m2tgyq7gj257ooddaobxqjw36bdayd.onion/search
   url.searchengines:
     global:
-      DEFAULT: http://4get.ca/web?s={}&scraper=startpage
+      DEFAULT: http://4get.ca/web?s={}&scraper=startpage&country=any&nsfw=no&newer=&older=
       ana: https://annas-archive.org/search?index=&page=1&q={}
       arc: https://archive.org/search?query={}
       en: https://dictionary.cambridge.org/dictionary/english/{}
       git: https://github.com/search?q={}&type=code
       txt: https://archive.org/search?query={}&sin=TXT
   url.start_pages:
-    global: http://4get.ca
+    global: www.startpage.com

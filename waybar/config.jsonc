@@ -96,7 +96,6 @@
 		"icon-size": 16
 	},
   "network": {
-    "interface": "ens128",
     "format-wifi": "  {essid}",
     "on-click": "nm-applet",
     "format-ethernet": "󰈀 wired",

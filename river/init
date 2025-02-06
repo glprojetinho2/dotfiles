@@ -46,6 +46,7 @@ riverctl map normal Super Y spawn youtube_menu
 riverctl map normal Super+Shift Y spawn youtube_music_menu
 riverctl map normal Super+Shift R spawn ~/.config/river/init
 riverctl map normal Super G spawn "$TERMINAL 'tgpt --multiline'"
+riverctl map normal Super E spawn "$TERMINAL 'oculante /tmp/print.png'"
 
 # Super+Shift+Return to start an instance of alacritty 
 riverctl map normal Super+Shift Return spawn alacritty
