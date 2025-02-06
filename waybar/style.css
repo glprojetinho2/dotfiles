@@ -16,11 +16,7 @@ window#waybar {
   padding: 0 7px;
 }
 
-#custom-clock {
-  background: white;
-}
-
-#pulseaudio, #memory, #cpu, #battery, #disk, #tray, #custom-mpvmusic, #custom-crypto, #custom-pacman, #custom-pomodoro {
+#network, #pulseaudio, #memory, #cpu, #battery, #disk, #tray, #custom-mpvmusic, #custom-crypto, #custom-pacman, #custom-pomodoro, #custom-clock {
   background: white;
   margin: 3px;
   padding: 0 6px;

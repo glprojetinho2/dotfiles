@@ -18,6 +18,7 @@
 		"cpu",
 		"custom/crypto",
 		"custom/pacman",
+		"network",
 		"disk",
 		"tray",
 	],
@@ -69,7 +70,7 @@
 	},
 	"cpu": {
 		"interval": 5,
-		"format": "CPU {usage:2}%"
+		"format": "CPU {usage:2}% L[{load}]"
 	},
 	"battery": {
 		"states": {
@@ -94,7 +95,17 @@
 	"tray": {
 		"icon-size": 16
 	},
-	"custom/pacman": {
+  "network": {
+    "interface": "ens128",
+    "format-wifi": "  {essid}",
+    "on-click": "nm-applet",
+    "format-ethernet": "󰈀 wired",
+    "format-disconnected": " disconnected",
+    "tooltip-format": "{ifname} via {gwaddr}",
+    "tooltip-format-wifi": "Signal strenght: {signalStrength}%",
+    "tooltip-format-ethernet": "{ifname} ",
+    "tooltip-format-disconnected": "Disconnected"
+  }, 	"custom/pacman": {
 		"format": "  {} ",
 		"interval": 3600, // every hour
 		"exec": "checkupdates | wc -l", // # of updates

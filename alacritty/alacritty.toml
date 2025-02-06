@@ -1,11 +1,11 @@
 [general]
-import = [ "/home/fish/.config/alacritty/color.toml",]
+import = [ "~/.config/alacritty/color.toml",]
 
 [font]
 size = 8
 
 [window]
-opacity = 0.5
+opacity = 0.75
 
 [selection]
 save_to_clipboard = true

@@ -77,6 +77,13 @@ function edit_command() {
 autoload -U edit_command
 zle -N edit_command
 
+function _foreground() {
+  fg
+}
+
+autoload -U _foreground
+zle -N _foreground
+
 function _bindings() {
   bindkey '^L' clear-screen-and-scrollback
   bindkey "^[e" edit-command-line
@@ -84,6 +91,7 @@ function _bindings() {
   # F1 = manpage
   bindkey "^[OP" help_binding
   bindkey "^[R" reload_config
+  bindkey "^z" _foreground
 }
 zvm_after_init_commands+=(_bindings)
 
