@@ -10,16 +10,16 @@ application/x-extension-shtml=org.qutebrowser.qutebrowser.desktop
 application/xhtml+xml=org.qutebrowser.qutebrowser.desktop
 application/x-extension-xhtml=org.qutebrowser.qutebrowser.desktop
 application/x-extension-xht=org.qutebrowser.qutebrowser.desktop
-image/jpeg=viewnior.desktop;gpicview.desktop;
-image/png=oculante.desktop
+image/jpeg=org.kde.okular.desktop
+image/png=org.kde.okular.desktop
 text/plain=helix.desktop
-application/pdf=org.pwmt.zathura.desktop
+application/pdf=org.kde.okular.desktop;
 application/x-bittorrent=deluge.desktop
 inode/directory=yazi.desktop
 application/x-gnome-saved-search=yazi.desktop
 x-scheme-handler/about=org.qutebrowser.qutebrowser.desktop
 x-scheme-handler/unknown=org.qutebrowser.qutebrowser.desktop
-image/jpg=oculante.desktop
+image/jpg=org.kde.okular.desktop
 application/epub+zip=org.pwmt.zathura.desktop
 
 [Added Associations]

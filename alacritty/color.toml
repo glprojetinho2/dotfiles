@@ -7,8 +7,8 @@ background = '#000000'
 foreground = '#FFFFFF'
 
 [colors.cursor]
-text = '#F7F7F7'
-cursor = '#434343'
+text = '#FFFFFF'
+cursor = '#FFFFFF'
 
 # Normal colors
 [colors.normal]

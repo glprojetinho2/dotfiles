@@ -17,7 +17,7 @@ if [[ ! -d "$configdir" ]]
 fi
 
 clipb="$(wl-paste)"
-if [[ ! -z $(echo "$clipb" | grep 'youtube\.com|youtu\.be') ]]; then
+if [[ ! -z $(echo "$clipb" | grep 'youtube\.com\|youtu\.be') ]]; then
     copied_youtube_link="$clipb"
 fi
 suggestions="$copied_youtube_link\n$(tac $histfile)"
@@ -29,7 +29,8 @@ fi
 video_list_with_id="$(pipe-viewer  --append-args="--input-ipc-server=/tmp/mpvvideosocket" --no-interactive --custom-layout="*NO*. *TITLE* [[*AUTHOR*]] *AGE_SHORT* *VIEWS_SHORT* *TIME* ||| *ID*" $video_query | sed -e 's/\x1b\[[0-9;]*m//g' -e 's/^ \+//g' -e '/^$/d')"
 video_list="$(echo "$video_list_with_id" | sed 's/ ||| .*//g')"
 echo "$video_list" >/tmp/vdlist
-if grep '^https?://' "$video_query"; then
+if echo "$video_query" | grep -E '^https?://' ; then
+    echo "$video_query" >/tmp/youtube_menu_link
     # a single link already spawns a video,
     # so we just exit.
     exit 0
@@ -39,7 +40,7 @@ video_number="$(echo "$video_list" | rofi -dmenu -i -l 20 -p "Choose an youtube 
 if [[ -z $video_number ]]; then
     exit 0
 fi
-video_id="$(echo "$video_list_with_id" | grep "^$video_number." | sed 's/.\+ ||| //g')"
+video_id="$(echo "$video_list_with_id" | grep "^$video_number\." | sed 's/.\+ ||| //g')"
 if [[ -z $video_id ]]; then
     echo "no video selected."
     exit 1

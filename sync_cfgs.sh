@@ -48,9 +48,6 @@ fetch_cfg mimeapps.list ~/.config/mimeapps.list
 fetch_cfg swaylock/config.idle $HOME/.config/swaylock/config.idle
 fetch_cfg lock.png $HOME/lock.png
 
-# configura o wallpaper
-fetch_cfg wallpaper.png $HOME/wallpaper.png
-
 # configura o helix
 fetch_cfg helix $HOME/.config/helix
 
@@ -72,6 +69,9 @@ fetch_cfg rofi $HOME/.config/rofi
 
 # configura o yazi (explorador de arquivos)
 fetch_cfg yazi $HOME/.config/yazi
+
+# configura o yazi (explorador de arquivos)
+fetch_cfg sioyek $HOME/.config/sioyek
 
 # deixa o fastfetch mais bonito
 fetch_cfg fastfetch $HOME/.config/fastfetch

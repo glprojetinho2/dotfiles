@@ -10,6 +10,8 @@ settings:
     global:
       normal:
         <Alt+e>: edit-url
+  content.notifications.enabled:
+    https://soldasul.sankhyacloud.com.br: true
   editor.command:
     global:
     - alacritty

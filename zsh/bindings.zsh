@@ -125,6 +125,16 @@ autoload -U _foreground
 zle -N _foreground
 
 autoload -U edit-command-line
+zle -N edit-command-line
+
+function __pwd() {
+    echo
+    pwd
+    zle reset-prompt
+}
+
+autoload -U __pwd
+zle -N __pwd
 
 function clear-screen-and-scrollback() {
   builtin echoti civis >"$TTY"
@@ -135,7 +145,6 @@ function clear-screen-and-scrollback() {
   builtin echoti cnorm >"$TTY"
 }
 zle -N clear-screen-and-scrollback
-zle -N edit-command-line
 
 function _bindings() {
   bindkey '^L' clear-screen-and-scrollback
@@ -147,6 +156,8 @@ function _bindings() {
   bindkey "^h" help_binding
   bindkey "^[R" reload_config
   bindkey "^z" _foreground
+  bindkey "^[d" __pwd
 }
+
 _bindings
 zvm_after_init_commands+=(_bindings)

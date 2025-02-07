@@ -3,6 +3,7 @@
 {
 	"layer": "top",
 	"position": "top",
+	"reload_style_on_change": true,
 
 	"modules-left": [
 		"river/tags",
@@ -104,7 +105,8 @@
     "tooltip-format-wifi": "Signal strenght: {signalStrength}%",
     "tooltip-format-ethernet": "{ifname} ",
     "tooltip-format-disconnected": "Disconnected"
-  }, 	"custom/pacman": {
+  },
+ 	"custom/pacman": {
 		"format": "  {} ",
 		"interval": 3600, // every hour
 		"exec": "checkupdates | wc -l", // # of updates

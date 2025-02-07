@@ -36,11 +36,7 @@ window#waybar {
   color: white;
 }
 #tags button.focused {
-  color: #FF9999;
-}
-#tags button:hover {
-  background: black;
-  color: orange;
+  color: #FF0000;
 }
 
 .coin_icon {

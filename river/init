@@ -21,11 +21,13 @@ do
 done
 
 lock_command='waylock -init-color 0x111111 -input-color 0x111166 -fail-color 0x661111 -ignore-empty-password'
+
+pkill swayidle
 swayidle -w \
 	timeout 120 "$lock_command &" \
 	timeout 240 'wlopm --off \*' \
 	resume 'wlopm --on \*' \
-	before-sleep "$lock_command &"
+	before-sleep "$lock_command &" &
 
 riverctl focus-follows-cursor normal
 
@@ -53,7 +55,7 @@ riverctl map normal Super Y spawn youtube_menu
 riverctl map normal Super+Shift Y spawn youtube_music_menu
 riverctl map normal Super+Shift R spawn ~/.config/river/init
 riverctl map normal Super G spawn "$TERMINAL 'tgpt --multiline'"
-riverctl map normal Super E spawn "$TERMINAL 'oculante /tmp/print.png'"
+riverctl map normal Super E spawn 'pinta /tmp/print.png'
 
 # Super+Shift+Return to start an instance of alacritty 
 riverctl map normal Super+Shift Return spawn alacritty
@@ -205,9 +207,9 @@ riverctl border-color-unfocused 0x000000
 riverctl set-repeat 50 500
 riverctl keyboard-layout br
 
-riverctl rule-add -title '_TODO.TXT_' tags $(( 1 << 20 ))
-riverctl rule-add -title '_TODO.TXT_' float
-pgrep -f _TODO.TXT_ || riverctl spawn "alacritty -o 'window.title=\"_TODO.TXT_\"' -e helix -w ~/Anotações ~/Anotações/todo.txt & disown"
+-riverctl rule-add -title '_TODO.TXT_' tags $(( 1 << 20 ))
+-riverctl rule-add -title '_TODO.TXT_' float
+-pgrep -f _TODO.TXT_ || riverctl spawn "alacritty -o 'window.title=\"_TODO.TXT_\"' -e todotxt-tui"
 
 # Make all views with app-id "bar" and any title use client-side decorations
 riverctl rule-add -app-id bar csd
