@@ -51,6 +51,9 @@ fetch_cfg lock.png $HOME/lock.png
 # configura o helix
 fetch_cfg helix $HOME/.config/helix
 
+# configura o todotxt-tui
+fetch_cfg todotxt-tui $HOME/.config/todotxt-tui
+
 # configura scripts
 fetch_cfg scripts/screen_recorder.sh $HOME/.config/myscripts/screen_recorder.sh
 

@@ -26,7 +26,7 @@ if [[ -z $video_query ]]; then
     echo "no input."
     exit 1
 fi
-video_list_with_id="$(pipe-viewer  --append-args="--input-ipc-server=/tmp/mpvvideosocket" --no-interactive --custom-layout="*NO*. *TITLE* [[*AUTHOR*]] *AGE_SHORT* *VIEWS_SHORT* *TIME* ||| *ID*" $video_query | sed -e 's/\x1b\[[0-9;]*m//g' -e 's/^ \+//g' -e '/^$/d')"
+video_list_with_id="$(pipe-viewer --results=50  --append-args="--input-ipc-server=/tmp/mpvvideosocket" --no-interactive --custom-layout="*NO*. *TITLE* [[*AUTHOR*]] *AGE_SHORT* *VIEWS_SHORT* *TIME* ||| *ID*" $video_query | sed -e 's/\x1b\[[0-9;]*m//g' -e 's/^ \+//g' -e '/^$/d')"
 video_list="$(echo "$video_list_with_id" | sed 's/ ||| .*//g')"
 echo "$video_list" >/tmp/vdlist
 if echo "$video_query" | grep -E '^https?://' ; then
@@ -36,7 +36,7 @@ if echo "$video_query" | grep -E '^https?://' ; then
     exit 0
 fi
 
-video_number="$(echo "$video_list" | rofi -dmenu -i -l 20 -p "Choose an youtube video" | cut -d . -f1 )"
+video_number="$(echo "$video_list" | rofi -theme-str 'window {width: 60%;}' -dmenu -i -l 20 -p "Choose an youtube video" | cut -d . -f1 )"
 if [[ -z $video_number ]]; then
     exit 0
 fi

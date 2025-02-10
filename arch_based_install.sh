@@ -37,14 +37,14 @@ paru --version || eval "git clone https://aur.archlinux.org/paru.git && cd paru 
 if ! paru -S --needed \
         wikiman archwiki-offline socat wf-recorder \
         rofi-wayland python-pip python python-pipx \
-        python-i3ipc anki-bin syncthing ripgrep \
-        swaybg vimiv alacritty lldb rustup \
+        anki-bin syncthing ripgrep \
+        swaybg alacritty lldb rustup \
         pipewire pipewire-pulse pwvucontrol lazygit \
         tealdeer kdotool yazi polkit \
         multibg-sway waybar zathura \
-        jq yq wl-clipboard swaylock grim slurp \
+        jq yq wl-clipboard waylock grim slurp \
         zoxide fish fisher qutebrowser \
-        helix ueberzugpp wlopm pinta \
+        helix ueberzugpp wlopm pinta swayidle \
         glow pup-bin aha fastfetch jqp-bin \
         zenith qt5-wayland umpv urlview arti \
         zathura-pdf-mupdf keepassxc antigen \

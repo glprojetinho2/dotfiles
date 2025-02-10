@@ -4,3 +4,4 @@ scripts/**/debug/*
 **/.rustc_info.json
 **/.new
 zsh/.zshrc.zwc
+todotxt-tui/log.log
