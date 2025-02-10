@@ -3,7 +3,7 @@
 import os
 from pathlib import Path
 home = Path(os.path.expanduser("~"))
-config_path = home.joinpath(".config/keepassxc/keepassxc.ini")
+config_path = home.joinpath(".config/okularpartrc")
 config = open(config_path, "r")
 def startswith_multiple(string, list):
     for i in list:
@@ -13,24 +13,19 @@ def startswith_multiple(string, list):
 blocks=config.read().split("\n\n")
 preserved_blocks=list(
     filter(
-        lambda x: not startswith_multiple(x, ["[General]", "[FdoSecrets]", "[GUI]"])
+        lambda x: not startswith_multiple(x, ["[General]", "[PageView]"])
         , blocks)
 )
 print(preserved_blocks)
 preserved_blocks.extend(["""[General]
-BackupBeforeSave=true
-ConfigVersion=2
-MinimizeAfterUnlock=false""",
-"""[FdoSecrets]
-Enabled=true
-""",
-"""[GUI]
-Language=en_US
-MinimizeOnClose=true
-MinimizeOnStartup=true
-MinimizeToTray=true
-ShowTrayIcon=true
-TrayIconAppearance=monochrome-light
-""",])
+DisplayDocumentTitle=false
+ShowEmbeddedContentMessages=false
+ShowOSD=false""",
+"""[PageView]
+BackgroundColor=0,0,0
+MouseMode=TextSelect
+ShowScrollBars=false
+UseCustomBackgroundColor=true""",
+])
 new_config = "\n\n".join(preserved_blocks)
 open(config_path, "w").write(new_config)

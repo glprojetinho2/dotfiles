@@ -5,3 +5,5 @@ scripts/**/debug/*
 **/.new
 zsh/.zshrc.zwc
 todotxt-tui/log.log
+qutebrowser.log
+qutebrowser.log

@@ -8,6 +8,10 @@
 # See the river(1), riverctl(1), and rivertile(1) man pages for complete
 # documentation.
 # Note: the "Super" modifier is also known as Logo, GUI, Windows, Mod4, etc.
+ 
+# solves problem with pinentry-gnome3
+systemctl --user import-environment DISPLAY WAYLAND_DISPLAY
+dbus-update-activation-environment DISPLAY WAYLAND_DISPLAY
 
 pkill waybar
 riverctl spawn waybar
@@ -54,7 +58,7 @@ riverctl map normal Super F12 spawn "musicipc next"
 riverctl map normal Super Y spawn youtube_menu
 riverctl map normal Super+Shift Y spawn youtube_music_menu
 riverctl map normal Super+Shift R spawn ~/.config/river/init
-riverctl map normal Super G spawn "$TERMINAL 'tgpt --multiline'"
+riverctl map normal Super G spawn "$TERMINAL 'tgpt --provider duckduckgo --multiline'"
 riverctl map normal Super E spawn 'pinta /tmp/print.png'
 riverctl map normal Super B "$SHELL_COMMAND toggle_border"
 

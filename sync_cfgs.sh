@@ -8,15 +8,6 @@ fetch_cfg () {
   ln -srf $file $path_to_copy_to
 }
 
-# configura o vim
-fetch_cfg .vimrc $HOME/.vimrc
-vim_clip=~/.vim/pack/vim-wayland-clipboard/start/vim-wayland-clipboard
-
-if [ ! -d $vim_clip ]; then
-  mkdir -p ~/.vim/pack/vim-wayland-clipboard/start/ # habilita o "+
-  git clone https://github.com/jasonccox/vim-wayland-clipboard.git $vim_clip
-fi
-
 # coloca os scripts no PATH
 for file in scripts/*
 do
@@ -27,9 +18,6 @@ done
 
 # configura o river (window manager)
 fetch_cfg river $HOME/.config/river
-
-# configura os papéis de parede
-fetch_cfg wallpapers $HOME/.sway/wallpapers
 
 # configura o alacritty (terminal)
 fetch_cfg alacritty $HOME/.config/alacritty
@@ -44,18 +32,17 @@ fetch_cfg waybar/waybar-crypto/config.ini $HOME/.config/waybar-crypto/config.ini
 # configura as aplicações-padrão
 fetch_cfg mimeapps.list ~/.config/mimeapps.list
 
-# configura a lock screen
-fetch_cfg swaylock/config.idle $HOME/.config/swaylock/config.idle
-fetch_cfg lock.png $HOME/lock.png
-
 # configura o helix
 fetch_cfg helix $HOME/.config/helix
 
 # configura o todotxt-tui
 fetch_cfg todotxt-tui $HOME/.config/todotxt-tui
 
-# configura scripts
-fetch_cfg scripts/screen_recorder.sh $HOME/.config/myscripts/screen_recorder.sh
+# configura o keepassxc
+./keepass.py
+
+# configura o okular
+./okular.py
 
 # configura o starship
 fetch_cfg starship/config.toml $HOME/.config/starship.toml
@@ -72,9 +59,6 @@ fetch_cfg rofi $HOME/.config/rofi
 
 # configura o yazi (explorador de arquivos)
 fetch_cfg yazi $HOME/.config/yazi
-
-# configura o yazi (explorador de arquivos)
-fetch_cfg sioyek $HOME/.config/sioyek
 
 # deixa o fastfetch mais bonito
 fetch_cfg fastfetch $HOME/.config/fastfetch

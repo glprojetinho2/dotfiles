@@ -1,10 +1,10 @@
 #!/bin/sh
 
 # sincroniza configs
-./sync_cfgs.sh
+./sync_cfgs.sh fjkdsajl
 
 # previne erro de chave PGP
-if ! sudo pacman -S --needed --noconfirm archlinux-keyring; then
+if ! sudo pacman -S --needed archlinux-keyring; then
     echo "falha ao instalar archlinux-keyring"
     exit 1
 fi
@@ -21,12 +21,10 @@ if ! yes y | LANG="en_US.UTF-8" sudo pacman -S --needed gvim; then
 fi
 
 # instala pacotes com o pacman
-if ! sudo pacman -S --needed --noconfirm base-devel; then
+if ! sudo pacman -S --needed base-devel; then
     echo "falha ao instalar pacotes com o pacman"
     exit 1
 fi
-
-python3 -m pipx ensurepath
 
 # instala o paru
 mkdir /tmp/prog
@@ -37,23 +35,20 @@ paru --version || eval "git clone https://aur.archlinux.org/paru.git && cd paru 
 if ! paru -S --needed \
         wikiman archwiki-offline socat wf-recorder \
         rofi-wayland python-pip python python-pipx \
-        anki-bin syncthing ripgrep \
-        swaybg alacritty lldb rustup \
-        pipewire pipewire-pulse pwvucontrol lazygit \
-        tealdeer kdotool yazi polkit \
-        multibg-sway waybar zathura \
+        anki-bin syncthing ripgrep alacritty \
+        lldb rustup lazygit waybar-crypto \
+        tealdeer yazi polkit waybar \
         jq yq wl-clipboard waylock grim slurp \
-        zoxide fish fisher qutebrowser \
+        zoxide qutebrowser zsh tgpt \
         helix ueberzugpp wlopm pinta swayidle \
-        glow pup-bin aha fastfetch jqp-bin \
-        zenith qt5-wayland umpv urlview arti \
-        zathura-pdf-mupdf keepassxc antigen \
-        vscode-html-languageserver river \
-        waybar-updates waybar-crypto tgpt
+        aha fastfetch qt5-wayland urlview arti \
+        keepassxc antigen waybar-updates river     
         then
     echo "falha ao instalar pacotes"
     exit 1
 fi
+
+python3 -m pipx ensurepath
 
 jrnl -v || pipx install jrnl
 tldr --update
@@ -109,7 +104,3 @@ EOF
 }
 setup_nerd_font_in_alacritty
 getnf -i $NERD_FONT_NAME
-
-# configura o TOR
-sudo systemctl enable tor.service
-sudo systemctl start tor.service
