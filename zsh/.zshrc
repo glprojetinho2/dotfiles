@@ -10,6 +10,12 @@ zmodload zsh/complist
 compinit
 _comp_options+=(globdots)
 
+source /usr/share/zsh/share/antigen.zsh
+antigen bundle jeffreytse/zsh-vi-mode
+antigen bundle zsh-users/zsh-autosuggestions
+ZSH_AUTOSUGGEST_STRATEGY=(history completion match_prev_cmd)
+antigen apply
+
 export EDITOR=helix
 export VISUAL=helix
 export MANPAGER=less
@@ -19,10 +25,5 @@ SAVEHIST=10000
 HISTFILE=~/.cache/zsh/history
 setopt append_history
 
-source /usr/share/zsh/share/antigen.zsh
-antigen bundle jeffreytse/zsh-vi-mode
-antigen bundle zsh-users/zsh-autosuggestions
-ZSH_AUTOSUGGEST_STRATEGY=(history completion match_prev_cmd)
-antigen apply
 
 eval "$(zoxide init zsh)"

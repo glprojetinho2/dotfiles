@@ -15,7 +15,7 @@ dbus-update-activation-environment DISPLAY WAYLAND_DISPLAY
 
 pkill waybar
 riverctl spawn waybar
-for command in syncthing keepassxc dunst 'arti proxy'
+for command in session-chat syncthing keepassxc dunst 'arti proxy'
 do
     grep_cmd='pgrep'
     if [[ $command = *" "* ]]; then

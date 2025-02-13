@@ -37,7 +37,7 @@ if ! paru -S --needed \
         rofi-wayland python-pip python python-pipx \
         anki-bin syncthing ripgrep alacritty \
         lldb rustup lazygit waybar-crypto \
-        tealdeer yazi polkit waybar \
+        tealdeer yazi polkit waybar tiny \
         jq yq wl-clipboard waylock grim slurp \
         zoxide qutebrowser zsh tgpt \
         helix ueberzugpp wlopm pinta swayidle \
