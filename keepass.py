@@ -16,21 +16,26 @@ preserved_blocks=list(
         lambda x: not startswith_multiple(x, ["[General]", "[FdoSecrets]", "[GUI]"])
         , blocks)
 )
-print(preserved_blocks)
-preserved_blocks.extend(["""[General]
+preserved_blocks.extend(["""
+[General]
 BackupBeforeSave=true
 ConfigVersion=2
-MinimizeAfterUnlock=false""",
-"""[FdoSecrets]
+MinimizeAfterUnlock=false
+""",
+"""
+[FdoSecrets]
 Enabled=true
 """,
-"""[GUI]
+"""
+[GUI]
 Language=en_US
 MinimizeOnClose=true
-MinimizeOnStartup=true
+MinimizeOnStartup=false
 MinimizeToTray=true
 ShowTrayIcon=true
 TrayIconAppearance=monochrome-light
 """,])
+preserved_blocks = [x.strip() for x in preserved_blocks]
 new_config = "\n\n".join(preserved_blocks)
+print(new_config)
 open(config_path, "w").write(new_config)
