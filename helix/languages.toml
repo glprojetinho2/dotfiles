@@ -1,3 +1,12 @@
+# [[language]]
+# name = "javascript"
+# injection-regex = "^(js|javascript)$"
+# file-types = ["js", "jsx", "mjs"]
+# shebangs = ["deno"]
+# roots = ["deno.json", "package.json", "tsconfig.json"]
+# auto-format = true
+# language-servers = ["deno-lsp"]
+
 [[language]]
 name = "typescript"
 shebangs = ["deno"]
@@ -19,3 +28,21 @@ inlayHints.variableTypes.enabled = true
 inlayHints.propertyDeclarationTypes.enabled  = true
 inlayHints.functionLikeReturnTypes.enabled = true
 inlayHints.enumMemberValues.enabled = true
+
+[[language]]
+name = "python"  
+roots = ["pyproject.toml", "Pipfile"]
+formatter = { command = "black", args = ["--quiet", "-"] }
+auto-format = true
+
+[[language]]
+name = "python"
+scope = "source.python"
+injection-regex = "py(thon)?"
+file-types = ["py", "pyi", "py3", "pyw", "ptl", "rpy", "cpy", "ipy", "pyt", { glob = ".python_history" }, { glob = ".pythonstartup" }, { glob = ".pythonrc" }, { glob = "SConstruct" }, { glob = "SConscript" }]
+shebangs = ["python", "uv"]
+roots = ["pyproject.toml", "setup.py", "poetry.lock", "pyrightconfig.json"]
+comment-token = "#"
+language-servers = ["pylsp"]
+# TODO: pyls needs utf-8 offsets
+indent = { tab-width = 4, unit = "    " }

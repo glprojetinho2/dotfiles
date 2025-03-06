@@ -4,25 +4,39 @@
 # echo -e 'example\nnotexample' | {grep} '^e'[CURSOR]
 # {echo} -e 'example\nnotexam[CURSOR]ple' | grep '^e'
 # {cargo install} --path .[CURSOR]
+# sudo {touch} /etc/file [CURSOR]
 # This is a hack, so its behavior might be odd at times.
 function command_before_cursor() {
     echo
     # Get all commandline tokens not starting with "-", up to and including the cursor's
-    args="$(echo $LBUFFER | paste -sd ' ' | sed -e 's/"[^"]*"//g' -e "s/'[^']*'//g" -e 's/"[^"]*$//g' -e "s/'[^']*$//g" -e 's/\s+/ /g' -e 's/.*|//g' )"
+    args="$(echo $LBUFFER | paste -sd ' ' | sed -E -e 's/"[^"]*"//g' -e "s/'[^']*'//g" -e 's/"[^"]*$//g' -e "s/'[^']*$//g" -e 's/\s+/ /g' -e 's/.*\|//g')"
     args=(${(s/ /)args})
     args=(${args:#-*})
+    args=(${args:#caffeinate})
+    args=(${args:#env})
+    args=(${args:#entr})
+    args=(${args:#exec})
+    args=(${args:#if})
+    args=(${args:#mosh})
+    args=(${args:#doas})
+    args=(${args:#nice})
+    args=(${args:#pipenv})
+    args=(${args:#prime-run})
+    args=(${args:#setsid})
+    args=(${args:#sudo})
+    args=(${args:#systemd-nspawn})
+    args=(${args:#time})
+    args=(${args:#watch})
+    args=(${args:#while})
+    args=(${args:#xargs})
+    args=(${args:#.*=.*})
+    echo $args
 
     # If commandline is empty, exit.
-    if [[ -z args ]]; then
+    if [[ -z $args ]]; then
         printf \a
         exit 0
     fi
-
-    # Skip leading commands and display the manpage of following command
-    while [ ! -z $args[2] ] && [ ! -z $(echo $args[1] | grep -E '^(and|begin|builtin|caffeinate|command|doas|entr|env|exec|if|mosh|nice|not|or|pipenv|prime-run|setsid|sudo|systemd-nspawn|time|watch|while|xargs|.*=.*)$') ]; do
-        echo $args[1]
-        args[1]=()
-    done
 
     # If there are at least two tokens not starting with "-", the second one might be a subcommand.
     # Try "man first-second" and fall back to "man first" if that doesn't work out.
@@ -136,6 +150,9 @@ function __pwd() {
 autoload -U __pwd
 zle -N __pwd
 
+autoload -U command_before_cursor
+zle -N command_before_cursor
+
 function clear-screen-and-scrollback() {
   builtin echoti civis >"$TTY"
   builtin print -rn -- $'\e[H\e[2J' >"$TTY"
@@ -153,7 +170,7 @@ function _bindings() {
   # F1 = manpage
   bindkey "^[OP" man_binding
   bindkey "^t" tldr_binding
-  bindkey "^h" help_binding
+  bindkey "^h" command_before_cursor
   bindkey "^[R" reload_config
   bindkey "^z" _foreground
   bindkey "^[d" __pwd

@@ -2,7 +2,7 @@
 prepend_keymap = [
   { on = ["g", "v"], run = "cd ~/Vídeos"},
   { on = "y", run = ["plugin wl-clipboard", "yank"]},
-  { on = "p", run = "plugin --sync smart-paste"},
+  { on = [ "p" ], run = "plugin smart-paste" },
   { on = [ "<C-n>" ], run = '''
     shell 'dragon-drop -x -i -T "$1"' --confirm
 ''' }
