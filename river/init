@@ -15,7 +15,7 @@ dbus-update-activation-environment DISPLAY WAYLAND_DISPLAY
 
 pkill waybar
 riverctl spawn waybar
-for command in session-chat syncthing keepassxc dunst 'arti proxy'
+for command in syncthing keepassxc dunst 'arti proxy'
 do
     grep_cmd='pgrep'
     if [[ $command = *" "* ]]; then
@@ -28,8 +28,8 @@ lock_command='waylock -init-color 0x111111 -input-color 0x111166 -fail-color 0x6
 
 pkill swayidle
 swayidle -w \
-	timeout 120 "$lock_command &" \
-	timeout 240 'wlopm --off \*' \
+	timeout 240 "$lock_command &" \
+	timeout 360 'wlopm --off \*' \
 	resume 'wlopm --on \*' \
 	before-sleep "$lock_command &" &
 
@@ -60,7 +60,9 @@ riverctl map normal Super+Shift Y spawn youtube_music_menu
 riverctl map normal Super+Shift R spawn ~/.config/river/init
 riverctl map normal Super G spawn "$TERMINAL 'tgpt --provider duckduckgo --multiline'"
 riverctl map normal Super E spawn 'pinta /tmp/print.png'
-riverctl map normal Super B "$SHELL_COMMAND toggle_border"
+# TODO: fazer funcionar
+riverctl map normal Super B spawn "$SHELL_COMMAND toggle_border"
+riverctl map normal Super 9 spawn "$lock_command"
 
 # Super+Shift+Return to start an instance of alacritty 
 riverctl map normal Super+Shift Return spawn alacritty
@@ -126,7 +128,7 @@ riverctl map-pointer normal Super BTN_RIGHT resize-view
 # Super + Middle Mouse Button to toggle float
 riverctl map-pointer normal Super BTN_MIDDLE toggle-float
 
-for i in $(seq 1 9)
+for i in $(seq 1 8)
 do
     tags=$((1 << ($i - 1)))
 
