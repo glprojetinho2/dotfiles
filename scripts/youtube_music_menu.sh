@@ -2,9 +2,9 @@
 pkill rofi
 
 # Default config directory
-configdir="$HOME/.config/youtube_menu"
+configdir="$HOME/.config/youtube_music_menu"
 if [[ ! -z $XDG_CONFIG_HOME ]]; then
-	configdir="$XDG_CONFIG_HOME/.config/youtube_rofi"
+	configdir="$XDG_CONFIG_HOME/.config/youtube_music_menu"
 fi
 histfile=$configdir/history
 
