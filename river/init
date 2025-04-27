@@ -57,9 +57,10 @@ riverctl map normal Super F11 spawn "musicipc prev"
 riverctl map normal Super F12 spawn "musicipc next"
 riverctl map normal Super Y spawn youtube_menu
 riverctl map normal Super+Shift Y spawn youtube_music_menu
+riverctl map normal Super+Shift P spawn "pomodoro start --duration 60"
 riverctl map normal Super+Shift R spawn ~/.config/river/init
 riverctl map normal Super D spawn "pgrep gromit-mpx || gromit-mpx; gromit-mpx -c; gromit-mpx -t"
-riverctl map normal Super G spawn "$TERMINAL 'tgpt --provider duckduckgo --preprompt \"if I ask you to do code-related stuff, show only the code and dont explain it.
+riverctl map normal Super G spawn "$TERMINAL 'tgpt --provider pollinations --preprompt \"if I ask you to do code-related stuff, show only the code and dont explain it.
 \" --multiline
 '"
 riverctl map normal Super E spawn 'pinta /tmp/print.png'

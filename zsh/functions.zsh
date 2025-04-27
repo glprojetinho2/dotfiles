@@ -18,3 +18,20 @@ toggle_border() {
     
 }
 
+function esconder() {
+   local exata=0
+   for arg in "$@"; do
+    if [[ "$arg" == "-e" || "$arg" == "--exata" ]]; then
+      exata=1
+      break
+    fi
+  done
+  if [ "$exata" -eq 0 ]; then
+    padrao="(\b$1[A-Za-zÀ-ÖØ-öø-ÿ]*)"
+  else
+    padrao="($1)"
+  fi
+  resultado="$(wl-paste | perl -pe "s/$padrao/<span class=\"esconder\" texto=\"\$1\">_<\/span>/g" | perl -pe 's/\n+/<br>/g' | perl -pe 's/<br>$//g')"
+  echo $resultado | wl-copy
+  echo $resultado 
+}

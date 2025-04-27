@@ -121,13 +121,10 @@
 	    "exec": "xmr_based_coin",
 	    "exec-if": "ping pro-api.coinmarketcap.com -c1"
 	},
-
   "custom/pomodoro": {
- 	"format": "{}",
- 	"return-type": "json",
-	"exec": "waybar-module-pomodoro -w $POMODORO_WORK -s $POMODORO_BREAK -l $POMODORO_LONG_BREAK --autow --autob",
-	"on-click": "waybar-module-pomodoro -w $POMODORO_WORK -s $POMODORO_BREAK -l $POMODORO_LONG_BREAK --autow --autob toggle",
-	"on-click-right": "waybar-module-pomodoro -w $POMODORO_WORK -s $POMODORO_BREAK -l $POMODORO_LONG_BREAK --autow --autob reset",
+	 	"format": "{}",
+	 	"interval": 1,
+	 	"exec": "pomodoro status"
  },
 	"custom/mpvmusic": {
 	 	 "exec": "musicipc status",
